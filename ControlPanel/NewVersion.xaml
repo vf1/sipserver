@@ -1,0 +1,20 @@
+﻿<Window x:Class="ControlPanel.NewVersion"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ControlPanel"
+    Title="OfficeSIP Server - New Version" Width="420" ResizeMode="NoResize"
+    SnapsToDevicePixels="True" SizeToContent="Height" Topmost="True"
+    WindowStartupLocation="CenterScreen" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <StackPanel Style="{StaticResource WindowPanel}">
+        <Label>
+            <TextBlock TextWrapping="Wrap">A new version of OfficeSIP Server has been released! Version <Bold><TextBlock Text="{Binding Version}"></TextBlock></Bold> is available at <Hyperlink Command="l:Commands.ShellExecute" CommandParameter="http://www.officesip.com">officesip.com</Hyperlink></TextBlock></Label>
+        <Label>You can download this version using the link:</Label>
+        <Label>
+            <Hyperlink Command="l:Commands.ShellExecute" CommandParameter="{Binding Url}">
+                <TextBlock Text="{Binding Url}"></TextBlock></Hyperlink>
+        </Label>
+        <StackPanel Style="{StaticResource BottomButtons}">
+            <Button IsDefault="True" Click="Button_Click">Ok</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

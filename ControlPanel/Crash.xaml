@@ -1,0 +1,30 @@
+﻿<Window x:Class="ControlPanel.Crash"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="OfficeSIP Server // Control Panel - Exception" Width="390" SizeToContent="Height" SnapsToDevicePixels="True"
+    Topmost="True" Top="0" Left="0" ResizeMode="NoResize" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style x:Key="OkCancelPanel">
+                <Setter Property="StackPanel.Margin" Value="0 10 0 0"></Setter>
+                <Setter Property="StackPanel.Orientation" Value="Horizontal"></Setter>
+                <Setter Property="StackPanel.HorizontalAlignment" Value="Right"></Setter>
+            </Style>
+            <Style x:Key="OkCancelButton">
+                <Setter Property="Button.Width" Value="60"></Setter>
+                <Setter Property="Button.Margin" Value="4 0 0 0"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <StackPanel Margin="5">
+        <TextBlock Margin="0,0,0,5" TextWrapping="Wrap">Control Panel has encountered a problem and needs to close. We are sorry for incovenience.</TextBlock>
+        <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" FontWeight="Bold" Foreground="Red">To help us diagnose the cause of this error and improve this software, please send below report to us.</TextBlock>
+        <TextBlock Margin="0,0,0,5" TextWrapping="Wrap">1. <Hyperlink Click="Hyperlink_Click">Click here</Hyperlink> to copy below text of report and open our web site</TextBlock>
+        <TextBlock Margin="0,0,0,5" TextWrapping="Wrap">2. Paste (Ctrl+V) text of the report in the web form and click Send</TextBlock>
+        <TextBlock Margin="0,0,0,10" FontWeight="Bold">Thank you!</TextBlock>
+        <TextBox Height="120" Name="Report" IsReadOnly="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" />
+        <StackPanel Style="{StaticResource OkCancelPanel}">
+            <Button IsCancel="True" IsDefault="True" IsEnabled="False" Click="Ok_Click" Name="Ok" Style="{StaticResource OkCancelButton}">Ok</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

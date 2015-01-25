@@ -1,0 +1,3 @@
+[submodule "XcapServer"]
+	path = XcapServer
+	url = https://github.com/vf1/xcap.org.git

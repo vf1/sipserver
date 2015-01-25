@@ -1,0 +1,563 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{09AF9C37-789C-4D58-9D8E-480F5999AB87}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sip.Server</RootNamespace>
+    <AssemblyName>OfficeSIP Server</AssemblyName>
+    <ApplicationIcon>Properties\OfficeSIP Server.ico</ApplicationIcon>
+    <StartupObject>Sip.Server.Application</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <!-- vf: -->
+  <ItemGroup>
+    <Reference Include="CsvReader, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\CsvReader.dll</HintPath>
+    </Reference>
+    <Reference Include="DnDns, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\DnDns.dll</HintPath>
+    </Reference>
+    <Reference Include="Http.Message, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Http.Message.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Sip.Message, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>dll\Sip.Message.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SocketServers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\SocketServers.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AddIn">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Restapi\Bnf\api.bat" />
+    <None Include="Restapi\Server.Restapi.dfa" />
+    <Compile Include="..\XcapServer\XcapServer\AuidHandlers\BaseAuidHandler.cs">
+      <Link>Xcap\BaseAuidHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\AuidHandlers\BaseGenericAuidHandler.cs">
+      <Link>Xcap\BaseGenericAuidHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\AuidHandlers\BasePidfManipulationHandler.cs">
+      <Link>Xcap\BasePidfManipulationHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\AuidHandlers\BaseResourceListsHandler.cs">
+      <Link>Xcap\BaseResourceListsHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\AuidHandlers\IAuidHandler.cs">
+      <Link>Xcap\IAuidHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\AuidHandlers\IAuidHandlerContext.cs">
+      <Link>Xcap\IAuidHandlerContext.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\AuidHandlers\IGenericAuidHandler.cs">
+      <Link>Xcap\IGenericAuidHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\AuidHandlers\IUsersAuidHandler.cs">
+      <Link>Xcap\IUsersAuidHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\AuidHandlers\RlsServicesHandler.cs">
+      <Link>Xcap\RlsServicesHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\AuidHandlers\XcapCapsHandler.cs">
+      <Link>Xcap\XcapCapsHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\Http\IHttpServer.cs">
+      <Link>Http\IHttpServer.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\Http\IHttpServerAgent.cs">
+      <Link>Http\IHttpServerAgent.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\Http\IHttpServerAgentRegistrar.cs">
+      <Link>Http\IHttpServerAgentRegistrar.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\XcapErrors.cs">
+      <Link>Xcap\XcapErrors.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\XcapMessageWriter.cs">
+      <Link>Xcap\XcapMessageWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\XcapServer.cs">
+      <Link>Xcap\XcapServer.cs</Link>
+    </Compile>
+    <Compile Include="..\XcapServer\XcapServer\XcapUriParser.cs">
+      <Link>Xcap\XcapUriParser.cs</Link>
+    </Compile>
+    <Compile Include="Accounts\IAccount.cs" />
+    <Compile Include="Application.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Authorization\AuthorizationManager.cs" />
+    <Compile Include="Authorization\DigestAuthentication.cs" />
+    <Compile Include="Authorization\Http\HttpDigestAuthentication.cs" />
+    <Compile Include="Authorization\Http\HttpAuthorizationManager.cs" />
+    <Compile Include="Authorization\Http\IHttpAuthorizationManager.cs" />
+    <Compile Include="Authorization\IAuthorizationManager.cs" />
+    <Compile Include="Authorization\Sip\SipAuthorizationManager.cs" />
+    <Compile Include="Authorization\Sip\ISipAuthorizationManager.cs" />
+    <None Include="Authorization\Sip\SspiDigestAuthorizationManager.cs" />
+    <Compile Include="BufferManagerProxy.cs" />
+    <Compile Include="Bugreport\CrashHandler.cs" />
+    <Compile Include="Collections\BinaryHeap.cs" />
+    <Compile Include="Collections\EmptyEnumerator.cs" />
+    <Compile Include="Collections\FastResizablePool.cs" />
+    <Compile Include="Collections\SkipNullArrayEnumerator.cs" />
+    <Compile Include="Collections\ThreadSafeDictionary.cs" />
+    <Compile Include="Collections\ThreadSafeList.cs" />
+    <Compile Include="Accounts\Account.cs" />
+    <Compile Include="Accounts\AccountsException.cs" />
+    <Compile Include="Accounts\AccountFiles.cs" />
+    <Compile Include="Accounts\Accountx.cs" />
+    <Compile Include="Accounts\AccountPath.cs" />
+    <Compile Include="Accounts\IAccounts.cs" />
+    <Compile Include="Configuration\ConfigurationSectionEx.cs" />
+    <Compile Include="Configuration\SipServerConfigurationSection.cs" />
+    <Compile Include="Configuration\VoipProviderConfigurationElement.cs" />
+    <Compile Include="Configuration\VoipProviderConfigurationElementCollection.cs" />
+    <Compile Include="Http\BaseHttpConnection.cs" />
+    <Compile Include="Http\BaseHttpServer.cs" />
+    <Compile Include="Initializer.cs" />
+    <Compile Include="LocationService\ILocationService.cs" />
+    <Compile Include="Restapi\RestapiUriParser.cs" />
+    <Compile Include="Restapi\JsonContractResolver.cs" />
+    <Compile Include="Restapi\RestapiService.cs" />
+    <Compile Include="Sdp\Helpers.cs" />
+    <Compile Include="Tools\TupleStruct.cs" />
+    <Compile Include="TransactionUsers\ErrorTU.cs" />
+    <Compile Include="TransactionUsers\MessageSummaryTU.cs" />
+    <Compile Include="TransactionUsers\OptionsTU.cs" />
+    <Compile Include="TransactionUsers\ProxyServerTU\ProxieFactory.cs" />
+    <Compile Include="TransactionUsers\ProxyServerTU\RequestProxyFactory.cs" />
+    <Compile Include="TransactionUsers\ProxyServerTU\TrunkLocalProxie.cs" />
+    <Compile Include="TransactionUsers\ProxyServerTU\TrunkDialogProxie.cs" />
+    <Compile Include="Configuration\ByteArrayConverter.cs" />
+    <Compile Include="Configuration\ConfigurationMonitor.cs" />
+    <Compile Include="Configuration\IPEndPointConverter.cs" />
+    <Compile Include="Configuration\PortForwardingConfigurationElement.cs" />
+    <Compile Include="Configuration\PortForwardingConfigurationElementCollection.cs" />
+    <Compile Include="Configuration\ProtocolConverter.cs" />
+    <Compile Include="Configuration\TurnServerConfigurationElement.cs" />
+    <Compile Include="Configuration\TurnServerConfigurationElementCollection.cs" />
+    <Compile Include="Configuration\TypedEnumerator.cs" />
+    <Compile Include="Transport\AjaxWebsocket.cs" />
+    <Compile Include="Transport\AjaxWebsocketWriter.cs" />
+    <Compile Include="Transport\Connection.cs" />
+    <Compile Include="Transport\ConnectionAddresses.cs" />
+    <Compile Include="Dialog\Dialog.cs" />
+    <Compile Include="Dialog\DialogManager.cs" />
+    <Compile Include="Authorization\Sip\SipDigestAuthentication.cs" />
+    <Compile Include="EnhancedPresence\EnhancedPresence.cs" />
+    <Compile Include="EnhancedPresence\EnhancedPresenceException.cs" />
+    <Compile Include="EnhancedPresence\ExpiresList.cs" />
+    <Compile Include="EnhancedPresence\Publication.cs" />
+    <Compile Include="EnhancedPresence\Subscription.cs" />
+    <Compile Include="EnhancedPresence\SubscriptionResource.cs" />
+    <Compile Include="EnhancedPresence\XmlContent\BatchSubscribe.cs" />
+    <Compile Include="EnhancedPresence\XmlContent\Categories.cs" />
+    <Compile Include="EnhancedPresence\XmlContent\Category.cs" />
+    <Compile Include="EnhancedPresence\XmlContent\ContactCardCategory.cs" />
+    <Compile Include="EnhancedPresence\XmlContent\ICategoryValue.cs" />
+    <Compile Include="EnhancedPresence\XmlContent\OutContent.cs" />
+    <Compile Include="EnhancedPresence\XmlContent\Rlmi.cs" />
+    <Compile Include="EnhancedPresence\XmlContent\RoamingData.cs" />
+    <Compile Include="EnhancedPresence\XmlContent\Schemas.cs" />
+    <Compile Include="EnhancedPresence\XmlContent\StateCategory.cs" />
+    <Compile Include="EnhancedPresence\XmlContent\UserPropertiesCategory.cs" />
+    <Compile Include="Transaction\GeneralVerifier.cs" />
+    <Compile Include="Http\HttpFileServer.cs" />
+    <Compile Include="Http\HttpServer.cs" />
+    <Compile Include="Transport\IncomingMessage.cs" />
+    <Compile Include="Tools\ISO3166.cs" />
+    <Compile Include="Transport\OutgoingMessage.cs" />
+    <Compile Include="Http\WebSocketHeader.cs" />
+    <Compile Include="Users\AdUser.cs" />
+    <Compile Include="Users\IUserz.cs" />
+    <Compile Include="Users\Userz.cs" />
+    <Compile Include="WcfService\WcfConfiguration.cs" />
+    <Compile Include="WcfService\IWcfServiceCallback.cs" />
+    <Compile Include="Mras\Mras.cs" />
+    <Compile Include="Mras\MrasException.cs" />
+    <Compile Include="Mras\Password.cs" />
+    <Compile Include="Mras\TokenBlob.cs" />
+    <Compile Include="Mras\TurnServerInfo.cs" />
+    <Compile Include="Mras\Username.cs" />
+    <Compile Include="Mras\XmlContent\Common.cs" />
+    <Compile Include="Mras\XmlContent\CredentialsRequest.cs" />
+    <Compile Include="Mras\XmlContent\CredentialsResponse.cs" />
+    <Compile Include="Mras\XmlContent\MediaRelay.cs" />
+    <Compile Include="Mras\XmlContent\Request.cs" />
+    <Compile Include="Mras\XmlContent\Response.cs" />
+    <Compile Include="Authorization\Sip\SipMicrosoftAuthentication.cs" />
+    <Compile Include="TransactionUsers\DirectorySearchTU.cs" />
+    <Compile Include="TransactionUsers\MrasTU.cs" />
+    <Compile Include="TransactionUsers\MsPresTU.cs" />
+    <Compile Include="Tools\MultiTimer.cs" />
+    <Compile Include="Properties\AssemblyInfoVersion.cs" />
+    <Compile Include="Rtp\DtmfDecoder.cs" />
+    <Compile Include="Rtp\DtmfEventMessage.cs" />
+    <Compile Include="Rtp\JitterBuffer.cs" />
+    <Compile Include="Rtp\ParseException.cs" />
+    <Compile Include="Rtp\RtcpMessage.cs" />
+    <Compile Include="Rtp\RtpMessage.cs" />
+    <Compile Include="Rtp\RtpReceiver.cs" />
+    <Compile Include="Rtp\Ssrc.cs" />
+    <Compile Include="ServiceSoap\ServiceSoap.cs" />
+    <Compile Include="ServiceSoap\XmlContent\DirectorySearchRequest.cs" />
+    <Compile Include="ServiceSoap\XmlContent\DirectorySearchResponse.cs" />
+    <Compile Include="Simple\PresenceDocument.cs" />
+    <Compile Include="Simple\Publication.cs" />
+    <Compile Include="Simple\SimpleModule.cs" />
+    <Compile Include="Simple\Subscription.cs" />
+    <Compile Include="Tools\Bigendian.cs" />
+    <Compile Include="Tools\BitTwiddling.cs" />
+    <Compile Include="Tools\ByteArray.cs" />
+    <Compile Include="Tools\Crc32.cs" />
+    <Compile Include="Tools\HashAlgorithmHelpers.cs" />
+    <Compile Include="Tools\HexEncoding.cs" />
+    <Compile Include="Tools\IpEndPointExt.cs" />
+    <Compile Include="Tools\NtpTimestamp.cs" />
+    <Compile Include="Tools\Saslprep.cs" />
+    <Compile Include="Tracer.cs" />
+    <Compile Include="TransactionUsers\ProxyServerTU\BaseProxie.cs" />
+    <Compile Include="TransactionUsers\ProxyServerTU\IProxie.cs" />
+    <Compile Include="TransactionUsers\ProxyServerTU\LocalProxie.cs" />
+    <Compile Include="TransactionUsers\ProxyServerTU\LocalTrunkProxie.cs" />
+    <Compile Include="TransactionUsers\ProxyServerTU\ProxyServerTU.cs" />
+    <Compile Include="TransactionUsers\ProxyServerTU\RequestProxy.cs" />
+    <Compile Include="TransactionUsers\RegistrarTU.cs" />
+    <Compile Include="TransactionUsers\TrunkTU.cs" />
+    <Compile Include="Transaction\AcceptedRequest.cs" />
+    <Compile Include="Transaction\BadServerTransactionKey.cs" />
+    <Compile Include="Transaction\ClientTransactionStorage.cs" />
+    <Compile Include="Transaction\IncomingMessageEx.cs" />
+    <Compile Include="Transaction\InviteClientTransaction.cs" />
+    <Compile Include="Transaction\InviteServerTransaction.cs" />
+    <Compile Include="Transaction\NonInviteClientTransaction.cs" />
+    <Compile Include="Transaction\NonInviteServerTransaction.cs" />
+    <Compile Include="TransactionUsers\SimpleTU.cs" />
+    <Compile Include="Transaction\ProducedRequest.cs" />
+    <Compile Include="Transaction\Transaction.cs" />
+    <Compile Include="Transaction\TransactionLayer.cs" />
+    <Compile Include="Transaction\ServerTransactionStorage.cs" />
+    <Compile Include="Transaction\BaseTransactionUser.cs" />
+    <Compile Include="LocationService\Binding.cs" />
+    <Compile Include="LocationService\Bindings.cs" />
+    <Compile Include="LocationService\LocationService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Service.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Transport\BufferHandle.cs" />
+    <Compile Include="Transport\TransportLayer.cs" />
+    <Compile Include="Trunk\ITrunkManager.cs" />
+    <Compile Include="Trunk\Trunk.cs" />
+    <Compile Include="Trunk\TrunkManager.cs" />
+    <Compile Include="Users\BaseUser.cs" />
+    <Compile Include="Users\CsvUser.cs" />
+    <Compile Include="Users\AdUsers.cs" />
+    <Compile Include="Users\BaseUsers.cs" />
+    <Compile Include="Users\CsvUsers.cs" />
+    <Compile Include="Users\IUsers.cs" />
+    <Compile Include="Users\IUser.cs" />
+    <Compile Include="Users\UsersException.cs" />
+    <Compile Include="WcfService\IWcfService.cs" />
+    <Compile Include="WcfService\WcfUser.cs" />
+    <Compile Include="WcfService\WcfUsers.cs" />
+    <Compile Include="WcfService\WcfVoipProvider.cs" />
+    <Compile Include="WcfService\WcfService.cs" />
+    <Compile Include="WcfService\WcfTurnConfiguration.cs" />
+    <Compile Include="Xcap\PidfManipulationHandler.cs" />
+    <Compile Include="Xcap\ResourceListsHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\OfficeSIP Server.ico" />
+    <None Include="Rtp\dtmf-rfc4733.txt" />
+    <None Include="Rtp\rtp-rfc3550.txt" />
+    <None Include="Restapi\Bnf\api.mrk" />
+    <None Include="Restapi\Bnf\api.bnf" />
+    <EmbeddedResource Include="Configuration\DefaultConfiguration.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Www\assets\hmac-md5.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\html5.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\md5.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\bootstrap-button.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\bootstrap-alert.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\codemirror\xml-hint.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\codemirror\closetag.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\codemirror\simple-hint.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\codemirror\simple-hint.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\codemirror\xml.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\codemirror\codemirror.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\codemirror\codemirror.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\bootstrap-collapse.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\bootstrap-carousel.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\index.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\bootstrap-tab.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\bootstrap-transition.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\bootstrap-modal.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\jquery.officesipApi.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\css\bootstrap-responsive.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\css\bootstrap-responsive.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\css\bootstrap.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\css\bootstrap.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\img\glyphicons-halflings-white.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\img\glyphicons-halflings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\js\bootstrap.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\bootstrap\js\bootstrap.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\handlebars-1.0.0.beta.6.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\jquery-1.7.1.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\assets\jquery.validate.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Www\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\XcapServer\XcapServer\Server.Xcap.dfa">
+      <Link>Server.Xcap.dfa</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App.config" />
+    <EmbeddedResource Include="EnhancedPresence\Schemas\BatchSubscribeRequest.xsd" />
+    <EmbeddedResource Include="EnhancedPresence\Schemas\Categories.xsd" />
+    <EmbeddedResource Include="EnhancedPresence\Schemas\categoryList.xsd" />
+    <EmbeddedResource Include="EnhancedPresence\Schemas\RichPresenceCommon.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Www\assets\bootstrap\bootstrap-dropdown.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Www\xmlEditorHints.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Www\xmlHelper.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Www\assets\jquery-1.8.3.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <!--
+  <ItemGroup>
+    <ProjectReference Include="$(ToolsProjects)">
+      <
+    </ProjectReference>
+  </ItemGroup>
+  -->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- vf: -->
+  <Target Name="AfterBuild">
+    <!-- Copy Certificate -->
+    <Copy SourceFiles="..\Certificate\OfficeSIP.pfx" DestinationFolder="$(OutputPath)">
+    </Copy>
+  </Target>
+  <Target Name="BeforeBuild">
+  </Target>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>XCOPY "$(SolutionDir)ApiDfaCompiler\bin\Debug\Sip.Server.RestApi.dfa" "$(TargetDir)" /D /Y
+XCOPY "$(ProjectDir)dll\Http.Message.dfa" "$(TargetDir)" /D /Y
+XCOPY "$(ProjectDir)dll\Sip.Message.dfa" "$(TargetDir)" /D /Y
+XCOPY "$(ProjectDir)Restapi\Server.Restapi.dfa" "$(TargetDir)" /D /Y</PostBuildEvent>
+  </PropertyGroup>
+</Project>

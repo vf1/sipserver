@@ -1,0 +1,17 @@
+﻿<xs:schema targetNamespace="http://schemas.microsoft.com/2006/09/sip/categorylist" elementFormDefault="qualified" xmlns="http://schemas.microsoft.com/2006/09/sip/categorylist" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CategoryType">
+    <xs:sequence>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:anyAttribute namespace="##other" processContents="lax"/>
+  </xs:complexType>
+  <xs:complexType name="CategoryListType">
+    <xs:sequence>
+      <xs:element name="category" type="CategoryType" maxOccurs="unbounded"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:anyAttribute namespace="##other" processContents="lax"/>
+  </xs:complexType>
+  <xs:element name="categoryList" type="CategoryListType"/>
+</xs:schema>

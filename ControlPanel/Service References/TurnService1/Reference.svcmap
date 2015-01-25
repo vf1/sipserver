@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="aef09bc0-2d6d-4f4d-84ca-3deaab12755e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://localhost:10002/officesip.turn.server.n1/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="turn.server.control.wsdl" MetadataType="Wsdl" ID="d79aeafe-7903-4c44-9b36-b37f42bde175" SourceId="1" SourceUrl="net.tcp://localhost:10002/officesip.turn.server.n1/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="f201e9dd-7dd9-4d01-a1a6-c1eca55cc47e" SourceId="1" SourceUrl="net.tcp://localhost:10002/officesip.turn.server.n1/mex" />
+    <MetadataFile FileName="turn.server.control.xsd" MetadataType="Schema" ID="647819b2-a6e3-497f-8e62-f3309b06bffb" SourceId="1" SourceUrl="net.tcp://localhost:10002/officesip.turn.server.n1/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="5655f06c-c086-4f8e-9e92-728bc415bf5d" SourceId="1" SourceUrl="net.tcp://localhost:10002/officesip.turn.server.n1/mex" />
+    <MetadataFile FileName="System.Net.xsd" MetadataType="Schema" ID="ac2ac34e-6aee-4302-b7a5-1de45ef5ac50" SourceId="1" SourceUrl="net.tcp://localhost:10002/officesip.turn.server.n1/mex" />
+    <MetadataFile FileName="System.Net.Sockets.xsd" MetadataType="Schema" ID="0f3e1177-8992-4d9b-a078-33b8ca570a5a" SourceId="1" SourceUrl="net.tcp://localhost:10002/officesip.turn.server.n1/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="ca29a14e-5730-4406-a2d4-926d92ae6d15" SourceId="1" SourceUrl="net.tcp://localhost:10002/officesip.turn.server.n1/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

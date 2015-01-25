@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://officesip.com/turn.server.control" elementFormDefault="qualified" targetNamespace="http://officesip.com/turn.server.control" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Net" />
+  <xs:element name="GetConfiguration">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetConfigurationResult" nillable="true" type="tns:WcfTurnConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="WcfTurnConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdminName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AdminPass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Key1" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Key2" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="MaxPort" type="xs:int" />
+      <xs:element minOccurs="0" name="MinPort" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Net" minOccurs="0" name="PublicIp" nillable="true" type="q1:IPAddress" />
+      <xs:element minOccurs="0" name="Realm" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TurnTcpPort" type="xs:int" />
+      <xs:element minOccurs="0" name="TurnTlsPort" type="xs:int" />
+      <xs:element minOccurs="0" name="TurnUdpPort" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WcfTurnConfiguration" nillable="true" type="tns:WcfTurnConfiguration" />
+  <xs:element name="SetConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="configuration" nillable="true" type="tns:WcfTurnConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

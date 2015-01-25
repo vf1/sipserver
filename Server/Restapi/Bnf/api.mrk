@@ -1,0 +1,53 @@
+﻿
+API.OPTIONS./options -> Const = BaseAction, Options;
+
+API.ACCOUNTS./accounts -> Const = BaseAction, Accounts;
+API.ACCOUNTS.DOMAIN-NAME -> Range = DomainName;
+
+API.VERSION./version -> Const = BaseAction, Version;
+
+API.ROLE./role -> Const = BaseAction, Role;
+
+API.ACCOUNTS.USERZ./userz -> Const = AccountAction, Userz;
+API.ACCOUNTS.USERZ.USERS-ID -> Range = UsersId;
+API.ACCOUNTS.USERZ.USERNAME -> Range = Username;
+
+API.PARAM.METHOD-PARAM.PUT -> Const = Method;
+API.PARAM.METHOD-PARAM.DELETE -> Const = Method;
+API.PARAM.TIMESTAMP-PARAM.DIGIT -> Decimal = Timestamp, long;
+API.PARAM.SIGNATURE-PARAM.HEX -> Range = Signature;
+API.PARAM.AUTHNAME-PARAM.USERNAME -> Range = Authname;
+API.PARAM.STARTINDEX-PARAM.DIGIT -> Decimal = StartIndex;
+API.PARAM.COUNT-PARAM.DIGIT -> Decimal = Count;
+
+
+//API.ACCOUNTS.AD-USERS./ad-users -> Const = AccountAction, AdUsers;
+//API.ACCOUNTS.CVS-USERS./csv-users -> Const = AccountAction, CsvUsers;
+
+
+//API.ACCOUNTS./accounts -> Const = BaseAction, Accounts;
+//API.ACCOUNTS.HEX -> Hex = AccountId;
+
+//API.VERSION./version -> Const = BaseAction, Version;
+
+//API.ROLE./role -> Const = BaseAction, Role;
+
+//API.ADMINS./admins -> Const = BaseAction, Admins;
+//API.ADMINS.USERNAME -> Range = Admin;
+
+//API.ADMINS./accounts -> Const = AdminAction, Accounts;
+
+//API.ACCOUNTS.OPTIONS./options -> Const = AccountAction, Options;
+//API.ACCOUNTS.AD-USERS./ad-users -> Const = AccountAction, AdUsers;
+//API.ACCOUNTS.CVS-USERS./csv-users -> Const = AccountAction, CsvUsers;
+
+//API.ACCOUNTS.CVS-USERS.USERNAME -> Range = Username;
+//API.ACCOUNTS.AD-USERS.USERNAME -> Range = Username;
+
+//API.PARAM.METHOD-PARAM.PUT -> Const = Method;
+//API.PARAM.METHOD-PARAM.DELETE -> Const = Method;
+//API.PARAM.TIMESTAMP-PARAM.DIGIT -> Decimal = Timestamp, long;
+//API.PARAM.SIGNATURE-PARAM.HEX -> Range = Signature;
+//API.PARAM.AUTHNAME-PARAM.USERNAME -> Range = Authname;
+//API.PARAM.STARTINDEX-PARAM.DIGIT -> Decimal = StartIndex;
+//API.PARAM.COUNT-PARAM.DIGIT -> Decimal = Count;

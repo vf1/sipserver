@@ -1,0 +1,32 @@
+﻿<Window x:Class="ControlPanel.EditUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:l="clr-namespace:ControlPanel"
+        WindowStartupLocation="CenterOwner"
+        Title="Edit User" Width="300" SnapsToDevicePixels="True" 
+        SizeToContent="Height" ShowInTaskbar="False" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <StackPanel Style="{StaticResource WindowPanel}">
+        <Label>Username:</Label>
+        <TextBox Name="Username" IsReadOnly="True"></TextBox>
+        <Label>Display Name:</Label>
+        <TextBox Name="displayName" Text="{l:Validator Rule=DisplayNameValidationRule}" MaxLength="{x:Static Member=l:MaxLength.DisplayName}"></TextBox>
+        <Label>Email:</Label>
+        <TextBox Name="email" Text="{l:Validator Rule=EmailValidationRule}" MaxLength="{x:Static Member=l:MaxLength.Email}"></TextBox>
+        <StackPanel Style="{StaticResource BottomButtons}">
+            <Button IsCancel="True">Cancel</Button>
+            <Button IsDefault="True" Name="ok" Click="Ok_Click">Ok</Button>
+        </StackPanel>
+    </StackPanel>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+</Window>

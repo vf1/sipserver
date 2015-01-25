@@ -1,0 +1,481 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>OfficeSIP Server</title>
+
+    <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet nofollow">
+    <link href="assets/bootstrap/css/bootstrap-responsive.css" rel="stylesheet nofollow">
+
+    <link href="assets/codemirror/codemirror.css" rel="stylesheet nofollow">
+    <link href="assets/codemirror/simple-hint.css" rel="stylesheet nofollow">
+
+    <link href="index.css" rel="stylesheet nofollow">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+          <script src="assets/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <!--
+        ##      ## ######## ##        ######   #######  ##     ## ######## 
+        ##  ##  ## ##       ##       ##    ## ##     ## ###   ### ##       
+        ##  ##  ## ##       ##       ##       ##     ## #### #### ##       
+        ##  ##  ## ######   ##       ##       ##     ## ## ### ## ######   
+        ##  ##  ## ##       ##       ##       ##     ## ##     ## ##       
+        ##  ##  ## ##       ##       ##    ## ##     ## ##     ## ##       
+         ###  ###  ######## ########  ######   #######  ##     ## ########
+          -->
+        <div id="page-welcome">
+
+            <header class="jumbotron masthead">
+                <div class="inner">
+                    <h1>OfficeSIP Server</h1>
+                    <p>SIP server for Windows.</p>
+                    <p>
+                        <button class="btn btn-large btn-primary" href="#login">Login</button>
+                        <!-- <button class="btn btn-large" href="#create-account">Create Account</button> -->
+                    </p>
+                </div>
+            </header>
+
+        </div><!-- #page-welcome -->
+        <div id="page-control" class="hide">
+
+            <div class="row">
+                <div class="span4 offset8" style="text-align: right;">
+                    <h1 style="margin: 0.2em;">OfficeSIP Server</h1>
+                </div>
+            </div>
+     
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+                        <li class="active"><a href="#" id="breadcrumb-server">Server</a></li>
+                        <li><span class="divider">/</span> <a href="#" id="breadcrumb-account"></a></li>
+                    </ul>
+                </div>
+                <div class="span9 offset3">
+                    <script id="global-error" type="text/x-handlebars-template">
+                        <div class="alert alert-error">
+                            <a class="close" data-dismiss="alert" href="#">×</a>
+                            {{this.message}}
+                        </div>
+                    </script>
+                </div>
+            </div>
+
+            <!--
+                 ######  ##     ## ########  ######## ########  
+                ##    ## ##     ## ##     ## ##       ##     ## 
+                ##       ##     ## ##     ## ##       ##     ## 
+                 ######  ##     ## ########  ######   ########  
+                      ## ##     ## ##        ##       ##   ##   
+                ##    ## ##     ## ##        ##       ##    ##  
+                 ######   #######  ##        ######## ##     ## 
+            -->
+            <div id="super-row" class="row collapse in">
+
+                <div class="span3">
+                    <div class="well x-menu">
+                        <ul class="nav nav-list" id="server-tab">
+                            <li class="nav-header">
+                                Server
+                            </li>
+                            <li class="active"><a href="#server-accounts"><i class="icon-flag"></i>Domains</a></li>
+                            <li><a href="#server-settings"><i class="icon-wrench"></i>Settings</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="span9">
+                    <div class="tab-content">
+
+                        <div class="tab-pane active" id="server-accounts">
+                            <h2>Accounts</h2>
+                            <div class="btn-toolbar" id="super-accounts-toolbar">
+                                <button href="#create" class="btn btn-success"><i class="icon-plus icon-white"></i>Create</button>
+                                <button href="#remove" class="btn btn-danger"><i class="icon-remove icon-white"></i>Remove</button>
+                                <button href="#refresh" class="btn" data-loading-text="Loading..."><i class="icon-refresh"></i>Refresh</button>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th> </th>
+                                        <th>Id</th>
+                                        <th>Domain</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <script id="accounts-list" type="text/x-handlebars-template">
+                                        {{#unless this}}
+                                        <tr><td colspan="4">No Accounts</td></tr>
+                                        {{/unless}}
+                                        {{#each this}}
+                                        <tr data-domain-name="{{this.domainName}}">
+                                            <td><input type="checkbox"></td>
+                                            <td>{{this.id}}</td>
+                                            <td>{{this.domainName}}</td>
+                                            <td>{{this.email}}</td>
+                                        </tr>
+                                        {{/each}}
+                                    </script>
+                                </tbody>
+                            </table>
+                            <p class="muted"><small>Click on a row to edit domain specific options and users.</small></p>
+                        </div>
+
+                        <div class="tab-pane" id="server-settings">
+                            <h2>Settings</h2>
+                            <div class="btn-toolbar" id="super-settings-toolbar">
+                                <!--
+                                <div class="btn-group">
+                                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-heart icon-white"></i>Helpers<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#changeadminpass">Change Administrator's Password</a>
+                                    </ul>
+                                </div>
+                                -->
+                                <div class="btn-group">
+                                    <button href="#validate" class="btn btn-success"><i class="icon-ok icon-white"></i>Validate</button>
+                                    <button href="#save" class="btn btn-primary"><i class="icon-upload icon-white"></i>Save Changes</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button href="#load" class="btn" data-loading-text="Loading..."><i class="icon-download"></i>Load (discard changes)</button>
+                                </div>
+                            </div>
+                            <div>
+                                <script id="server-settings-errors" type="text/x-handlebars-template">
+                                    {{#each this}}
+                                    <div class="alert alert-error">
+                                        <a class="close" data-dismiss="alert" href="#">×</a>
+                                        {{this.message}}
+                                    </div>
+                                    {{/each}}
+                                </script>
+                                <script id="server-settings-noerror" type="text/x-handlebars-template">
+                                    <div class="alert alert-success">
+                                        <a class="close" data-dismiss="alert" href="#">×</a>
+                                        Done!
+                                    </div>
+                                </script>
+                            </div>
+
+                            <div id="server-settings-editor">
+                            </div>
+
+                            <h3>Helpers</h3>
+                            <p>Below helpers simplify editing XML configuration. Settings will reflects in XML configuration. <strong>Click Save Changes to apply configuration when finished.</strong></p>
+
+                            <h4>Administrator's password</h4>
+                            <form id="passhashform">
+                                <input type="text" value="" placeholder="Password" />
+                                <p><small>Password's hash is used in the configuration instead plain password</small></p>
+                            </form>
+
+                            <h4>Tracing</h4>
+                            <form id="tracingform">
+                                <label class="checkbox">
+                                    <input type="checkbox" />
+                                    Enable tracing for trobleshooting purpose
+                                </label>
+                                <label>Path on the server for tracing log files</label>
+                                <input type="text" value="" placeholder="Path" />
+                                <p><small>Default value is C:\AppData\OfficeSIP\Server\Tracing\</small></p>
+                            </form>
+
+                            <h4>Active Directory</h4>
+                            <form id="adform">
+                                <label class="checkbox">
+                                    <input type="checkbox" />
+                                    Pull-in user from Active Directory and use domain authorization instead of native one, this enables single sign-on feature. A user gain access to office sip server if he is logged in Windows domain
+                                </label>
+                                <label>Pull-in users from specific AD group (all users if empty)</label>
+                                <input type="text" placeholder="AD group name">
+                            </form>
+
+                            <h4>HTML5 SIP Clients</h4>
+                            <form id="webform">
+                                <label>Path to http server home directory</label>
+                                <input type="text" placeholder="Path" />
+                                <label>WebSocket response frame type (see <a href="http://tools.ietf.org/html/rfc6455#section-11.8" target="_blank">WebSocket Opcode</a>)</label>
+                                <select><option>Binary</option><option>Text</option><option>AsRequest</option></select>
+                                <p><small>The server available at <a href="http://localhost:5060/" target="_blank">http://localhost:5060/</a></small></p>
+                            </form>
+
+                            <h4>Miscellaneous</h4>
+                            <form id="miscform">
+                                <label class="checkbox">
+                                    <input id="officesipfiletransfer" type="checkbox" />
+                                    Enable file transfer for OfficeSIP Messenger
+                                </label>
+                            </form>
+                          
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div><!-- super-row -->
+            <!--
+                   ###     ######   ######   #######  ##     ## ##    ## ######## 
+                  ## ##   ##    ## ##    ## ##     ## ##     ## ###   ##    ##    
+                 ##   ##  ##       ##       ##     ## ##     ## ####  ##    ##    
+                ##     ## ##       ##       ##     ## ##     ## ## ## ##    ##    
+                ######### ##       ##       ##     ## ##     ## ##  ####    ##    
+                ##     ## ##    ## ##    ## ##     ## ##     ## ##   ###    ##    
+                ##     ##  ######   ######   #######   #######  ##    ##    ##    
+            -->
+            <div id="account-row" class="row collapse">
+
+
+
+                <div class="span3">
+                    <div class="well" style="padding: 8px 0;">
+                        <ul class="nav nav-list" id="account-tab">
+                            <li class="nav-header">
+                                Domain
+                            </li>
+                            <li class="active">
+                                <a href="#home"><i class="icon-home"></i>Home</a>
+                            </li>
+                            <li class="nav-header" id="users-headline" style="display:none;">
+                                Users
+                            </li>
+                            <script id="users-menu" type="text/x-handlebars-template">
+                                <li class="users-ui">
+                                    <a href="#{{this.id}}-users"><i class="icon-user"></i>{{this.sourceName}}</a>
+                                </li>
+                            </script>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="span9">
+                    <div class="tab-content">
+
+                        <div class="tab-pane active" id="home">
+                            <h2>Account details</h2>
+                            <div class="btn-toolbar" id="account-details-toolbar">
+                                <button href="#save" class="btn btn-danger"><i class="icon-upload icon-white"></i>Apply</button>
+                                <button href="#load" class="btn" data-loading-text="Loading..."><i class="icon-refresh"></i>Refresh</button>
+                            </div>
+                            <div>
+                                <script id="account-details-saved" type="text/x-handlebars-template">
+                                    <div class="alert alert-success">
+                                        <a class="close" data-dismiss="alert" href="#">×</a>
+                                        Saved!
+                                    </div>
+                                </script>
+                                <script id="account-details-error" type="text/x-handlebars-template">
+                                    <div class="alert alert-error">
+                                        <a class="close" data-dismiss="alert" href="#">×</a>
+                                        {{this.message}}
+                                    </div>
+                                </script>
+                            </div>
+                            <form>
+                                <label>Domain name</label>
+                                <input type="text" class="domain-name" />
+                                <label>Administrator's email</label>
+                                <input type="text" class="email" />
+                                <label>Password</label>
+                                <input type="password" class="password" />
+                                <p>Leave field empty if you do not want to change its value</p>
+                            </form>
+
+                        <!--
+                            <p id="version">Version: 
+                                <span class="major">
+                                </span>.<span class="minor">
+                                </span>.<span class="majorRevision">
+                                </span>.<span class="minorRevision"></span>
+                            </p>
+                        -->
+                        </div>
+                        
+                        <div class="tab-pane" id="settings">
+                            Settings
+                        </div>
+
+                        <script id="users" type="text/x-handlebars-template">
+                            <div class="tab-pane users-ui" id="{{this.id}}-users">
+                                <h2>Users ({{this.sourceName}})</h2>
+                                <div class="btn-toolbar" id="account-{{this.id}}-users-toolbar">
+                                    {{#unless this.isReadOnly}}
+                                        <button href="#add" class="btn btn-success"><i class="icon-plus icon-white"></i>Add</button>
+                                        <button href="#remove" class="btn btn-danger"><i class="icon-remove icon-white"></i>Remove</button>
+                                    {{/unless}}
+                                    <button href="#load" class="btn" data-loading-text="Loading..."><i class="icon-refresh"></i>Refresh</button>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </script>
+                        <script id="users-tr" type="text/x-handlebars-template">
+                            {{#unless this}}
+                                <tr><td colspan="3">No Users</td></tr>
+                            {{/unless}}
+                            {{#each this}}
+                                <tr data-username="{{this.name}}">
+                                    <td><input type="checkbox"></td>
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.email}}</td>
+                                </tr>
+                            {{/each}}
+                        </script>
+                    </div>
+                </div>
+
+            </div><!-- account-row -->
+
+        </div><!-- #page-control -->
+
+<!--
+    #######   ####    ###    ##        #######   ######    ######  
+    ##     ##  ##    ## ##   ##       ##     ## ##    ##  ##    ## 
+    ##     ##  ##   ##   ##  ##       ##     ## ##        ##       
+    ##     ##  ##  ##     ## ##       ##     ## ##   ####  ######  
+    ##     ##  ##  ######### ##       ##     ## ##    ##        ## 
+    ##     ##  ##  ##     ## ##       ##     ## ##    ##  ##    ## 
+    #######   #### ##     ## ########  #######   ######    ######  
+-->
+
+        <!-- AUTH DIALOG -->
+        <div class="modal hide fade" id="auth-dialog">
+            <div class="modal-header">
+                <h3>Unauthorized - Please enter credentials</h3>
+            </div>
+            <div class="modal-body">
+                <label>Domain / User name</label>
+                <input type="text" id="username" />
+                <label>Password</label>
+                <input type="password" id="password" />
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary">Authorize</a>
+            </div>
+        </div>
+
+        <!-- ADD ACCOUNT DIALOG -->
+        <div class="modal hide fade" id="add-account-dialog">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Create Account</h3>
+            </div>
+            <div class="modal-body">
+                <label>Domain Name</label>
+                <input type="text" class="domainName" value="" />
+                <label>Email</label>
+                <input type="text" class="email" value="" />
+                <label>Password</label>
+                <input type="password" class="password" />
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary">Create</a>
+            </div>
+        </div>
+
+        <!-- ADD USER DIALOG -->
+        <div class="modal hide fade" id="add-user-dialog">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Add User</h3>
+            </div>
+            <div class="modal-body">
+                <label>Username</label>
+                <input type="text" class="username" />
+                <label>Display Name</label>
+                <input type="text" class="displayName" />
+                <label>Email</label>
+                <input type="text" class="email" />
+                <label>Password</label>
+                <input type="password" class="password" />
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary">Add</a>
+            </div>
+        </div>
+
+        <!-- CONFIRM DIALOG -->
+        <div class="modal hide fade" id="confirm-dialog">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3 class="confirm-delete">Delete Accounts</h3>
+                <h3 class="confirm-delete-users">Delete Users</h3>
+            </div>
+            <div class="modal-body">
+                <p class="confirm-delete">Do you really want to delete accounts?</p>
+                <p class="confirm-delete-users">Do you really want to delete users?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn confirm-delete confirm-delete-users" data-dismiss="modal">No</a>
+                <a href="#" class="btn btn-primary confirm-delete confirm-delete-users">Delete</a>
+            </div>
+        </div>
+
+    </div><!-- container -->
+
+<!--
+          ##  ######  
+          ## ##    ## 
+          ## ##       
+          ##  ######  
+    ##    ##       ## 
+    ##    ## ##    ## 
+     ######   ######  
+-->
+
+    <script src="assets/jquery-1.8.3.min.js"></script>
+
+    <script src="assets/handlebars-1.0.0.beta.6.js"></script>
+
+    <script src="assets/bootstrap/bootstrap-transition.js"></script>
+    <script src="assets/bootstrap/bootstrap-alert.js"></script>
+    <script src="assets/bootstrap/bootstrap-modal.js"></script>
+    <script src="assets/bootstrap/bootstrap-tab.js"></script>
+    <script src="assets/bootstrap/bootstrap-carousel.js"></script>
+    <script src="assets/bootstrap/bootstrap-collapse.js"></script>
+    <script src="assets/bootstrap/bootstrap-button.js"></script>
+    <script src="assets/bootstrap/bootstrap-dropdown.js"></script>
+
+    <script src="assets/codemirror/codemirror.js"></script>
+    <script src="assets/codemirror/closetag.js"></script>
+    <script src="assets/codemirror/simple-hint.js"></script>
+    <script src="assets/codemirror/xml-hint.js"></script>
+    <script src="assets/codemirror/xml.js"></script>
+
+    <script src="assets/md5.js"></script>
+    <script src="assets/hmac-md5.js"></script>
+
+    <script src="jquery.officesipApi.js"></script>
+
+    <script>
+        if (!window.console)
+            window.console = {
+                log: function() {},
+                info: function() {},
+                warn: function() {},
+                debug: function() {},
+                error: function() {}
+            };
+    </script>
+
+    <script src="xmlHelper.js"></script>
+    <script src="index.js"></script>
+    <script src="xmlEditorHints.js"></script>
+
+</body>
+</html>

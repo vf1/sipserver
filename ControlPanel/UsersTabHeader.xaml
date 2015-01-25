@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="ControlPanel.UsersTabHeader"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="clr-namespace:ImageSnappingToPixels">
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MainResources.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <StackPanel Style="{StaticResource TabHeaderStyle}">
+        <i:Bitmap Source="Images\MainTab\group.png" />
+        <TextBlock Style="{StaticResource TabHeaderTextStyle}" Text="{Binding Path=HeaderText,Mode=OneTime}"></TextBlock>
+    </StackPanel>
+</UserControl>

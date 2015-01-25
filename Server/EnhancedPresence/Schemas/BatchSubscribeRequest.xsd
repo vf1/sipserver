@@ -1,0 +1,47 @@
+﻿<xs:schema targetNamespace="http://schemas.microsoft.com/2006/01/sip/batch-subscribe" elementFormDefault="qualified" xmlns="http://schemas.microsoft.com/2006/01/sip/batch-subscribe" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cl="http://schemas.microsoft.com/2006/09/sip/categorylist">
+  <xs:import namespace="http://schemas.microsoft.com/2006/09/sip/categorylist" schemaLocation="categoryList.xsd"/>
+  <xs:complexType name="ContextType">
+    <xs:sequence>
+      <xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResourceType">
+    <xs:sequence>
+      <xs:element name="context" minOccurs="0" maxOccurs="1" type="ContextType"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+    <xs:anyAttribute namespace="##other" processContents="lax"/>
+  </xs:complexType>
+  <xs:complexType name="AdhocListType">
+    <xs:sequence>
+      <xs:element name="resource" type="ResourceType" maxOccurs="unbounded"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ActionType">
+    <xs:sequence>
+      <xs:element name="adhocList" type="AdhocListType" minOccurs="1" maxOccurs="1"/> <xs:element ref="cl:categoryList" minOccurs="1" maxOccurs="1"/> <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="subscribe"/>
+          <xs:enumeration value="unsubscribe"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <!-- changed: ##other -> ##any -->
+    <xs:anyAttribute namespace="##any" processContents="lax"/>
+  </xs:complexType>
+  <xs:element name="batchSub">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="action" type="ActionType" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <!-- changed: ##other -> ##any -->
+      <xs:anyAttribute namespace="##any" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

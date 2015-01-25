@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c27d24bd-aef7-4bfc-b7e6-f33e88059f42" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://localhost:10001/officesip/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="server.control.wsdl" MetadataType="Wsdl" ID="02041f31-a8f3-4bf8-bd50-f909d0ba9ac7" SourceId="1" SourceUrl="net.tcp://localhost:10001/officesip/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="5f611db5-8a60-43ea-b180-f36ca4f450f9" SourceId="1" SourceUrl="net.tcp://localhost:10001/officesip/mex" />
+    <MetadataFile FileName="server.control.xsd" MetadataType="Schema" ID="a5ff1b40-f817-4cbc-a3f4-8ca98d6e1c4f" SourceId="1" SourceUrl="net.tcp://localhost:10001/officesip/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="03711dcc-dfb7-4426-b659-66c69b52dac7" SourceId="1" SourceUrl="net.tcp://localhost:10001/officesip/mex" />
+    <MetadataFile FileName="System.Net.xsd" MetadataType="Schema" ID="11d38d5a-7813-421d-bab0-78fc0c6e2edd" SourceId="1" SourceUrl="net.tcp://localhost:10001/officesip/mex" />
+    <MetadataFile FileName="System.Net.Sockets.xsd" MetadataType="Schema" ID="2e0bc84e-efca-4c65-9fc9-bc97a95c81f9" SourceId="1" SourceUrl="net.tcp://localhost:10001/officesip/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="6afd11ab-e9f9-4d17-b923-83bd71a65428" SourceId="1" SourceUrl="net.tcp://localhost:10001/officesip/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="d97fed8a-6edd-40af-be90-465cab776ff8" SourceId="1" SourceUrl="net.tcp://localhost:10001/officesip/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

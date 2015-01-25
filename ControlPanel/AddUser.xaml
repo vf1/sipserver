@@ -1,0 +1,38 @@
+﻿<Window x:Class="ControlPanel.AddUser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ControlPanel"
+    Title="Add User" Width="300" ResizeMode="NoResize"
+    SnapsToDevicePixels="True" SizeToContent="Height" ShowInTaskbar="False"
+    WindowStartupLocation="CenterOwner" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>    
+    </Window.Resources>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <StackPanel Style="{StaticResource WindowPanel}">
+        <Label>Username:</Label>
+        <StackPanel Orientation="Horizontal">
+            <TextBox Width="140" TextAlignment="Right" CharacterCasing="Lower" Name="username" MaxLength="{x:Static Member=l:MaxLength.Username}" Text="{l:Validator Rule=UsernameValidationRule}"></TextBox>
+            <Label>@</Label>
+            <Label Content="{Binding Path=Config.HomeDomain}"></Label>
+        </StackPanel>
+        <Label>Display Name:</Label>
+        <TextBox Name="displayName" Text="{l:Validator Rule=DisplayNameValidationRule}" MaxLength="{x:Static Member=l:MaxLength.DisplayName}"></TextBox>
+        <Label>Email:</Label>
+        <TextBox Name="email" Text="{l:Validator Rule=EmailValidationRule}" MaxLength="{x:Static Member=l:MaxLength.Email}"></TextBox>
+        <Label>Password:</Label>
+        <PasswordBox Name="password" MaxLength="{x:Static Member=l:MaxLength.Password}"></PasswordBox>
+        <StackPanel Style="{StaticResource BottomButtons}">
+            <Button IsCancel="True">Cancel</Button>
+            <Button IsDefault="True" Name="ok" Click="Ok_Click">Ok</Button>
+        </StackPanel>
+    </StackPanel>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+</Window>

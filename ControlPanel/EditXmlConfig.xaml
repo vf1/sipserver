@@ -1,0 +1,68 @@
+﻿<Window x:Class="ControlPanel.EditXmlConfig"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ControlPanel"
+    xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+    Title="OfficeSIP Server - Control Panel // Edit XML Configuration" 
+    Width="840" Height="600" ResizeMode="CanResize"
+    WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <l:VisibilityConverter x:Key="VisibilityConverter"></l:VisibilityConverter>
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Configuration">
+                <MenuItem Command="l:Commands.LoadXml"></MenuItem>
+                <MenuItem Command="l:Commands.ValidateXml"></MenuItem>
+                <MenuItem Command="l:Commands.SaveXml"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Command="l:Commands.LoadDefaultXml"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Command="l:Commands.Close"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Command="Undo"></MenuItem>
+                <MenuItem Command="Redo"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Command="Cut"></MenuItem>
+                <MenuItem Command="Copy"></MenuItem>
+                <MenuItem Command="Paste"></MenuItem>
+                <MenuItem Command="Delete"></MenuItem>
+                <Separator></Separator>
+                <MenuItem IsChecked="{Binding ElementName=textEditor, Path=WordWrap}" Click="MenuItem_WordWrap" Header="Word Wrap"></MenuItem>
+                <MenuItem IsChecked="{Binding ElementName=textEditor, Path=ShowLineNumbers}" Click="MenuItem_ShowLineNumbers" Header="Show Line Numbers"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="Homepage" Command="l:Commands.ShellExecute" CommandParameter="http://www.officesip.com"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <!--
+        <StackPanel DockPanel.Dock="Bottom" Style="{StaticResource BottomButtons}">
+            <Button Command="l:Commands.LoadXml" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+            <Button Command="l:Commands.ValidateXml" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+            <Button Command="l:Commands.SaveXml" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+        </StackPanel>
+        -->
+        <ListView DockPanel.Dock="Bottom" Background="Coral" ItemsSource="{Binding XmlConfigErrors}" IsHitTestVisible="False" Visibility="{Binding Path=XmlConfigErrors, Converter={StaticResource VisibilityConverter}}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="780" Header="Errors" />
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <avalonEdit:TextEditor
+			Name="textEditor"
+			FontFamily="Consolas"
+			FontSize="10pt"
+			SyntaxHighlighting="XML"
+            IsEnabled="{Binding Path=XmlConfigOperationFinished}">
+        </avalonEdit:TextEditor>
+    </DockPanel>
+</Window>

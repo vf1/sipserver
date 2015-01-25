@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <ComponentGroup Id="WwwFiles">
+            <Component Id="index.css" Directory="Www" Guid="{15F94B10-4F2E-4889-8DF4-E4499851EAFB}">
+                <File Id="index.css" KeyPath="yes" Source="!(wix.WwwPath)\index.css" />
+            </Component>
+            <Component Id="index.html" Directory="Www" Guid="{5DD4D278-E86F-475C-917E-762AC7ED67F6}">
+                <File Id="index.html" KeyPath="yes" Source="!(wix.WwwPath)\index.html" />
+            </Component>
+            <Component Id="index.js" Directory="Www" Guid="{C8035969-24A1-43F3-8CA5-7923B53729D5}">
+                <File Id="index.js" KeyPath="yes" Source="!(wix.WwwPath)\index.js" />
+            </Component>
+            <Component Id="jquery.officesipApi.js" Directory="Www" Guid="{E6FB3F72-F8E6-467C-A0D8-E6B4DF4A399B}">
+                <File Id="jquery.officesipApi.js" KeyPath="yes" Source="!(wix.WwwPath)\jquery.officesipApi.js" />
+            </Component>
+            <Component Id="xmlEditorHints.js" Directory="Www" Guid="{014DDB5B-BB18-4DB5-8688-9A9F47585C7F}">
+                <File Id="xmlEditorHints.js" KeyPath="yes" Source="!(wix.WwwPath)\xmlEditorHints.js" />
+            </Component>
+            <Component Id="xmlHelper.js" Directory="Www" Guid="{D971E47D-CC97-4563-B12A-6DACC71DADAE}">
+                <File Id="xmlHelper.js" KeyPath="yes" Source="!(wix.WwwPath)\xmlHelper.js" />
+            </Component>
+            <Component Id="handlebars_1.0.0.beta.6.js" Directory="assets" Guid="{607A2D3B-282C-4CDF-A2C9-6A8991ED89D3}">
+                <File Id="handlebars_1.0.0.beta.6.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\handlebars-1.0.0.beta.6.js" />
+            </Component>
+            <Component Id="hmac_md5.js" Directory="assets" Guid="{232B1939-ED6B-4957-98AD-41E0B4AA9D67}">
+                <File Id="hmac_md5.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\hmac-md5.js" />
+            </Component>
+            <Component Id="html5.js" Directory="assets" Guid="{36B8652A-08F8-4C24-9276-7677C5A3D399}">
+                <File Id="html5.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\html5.js" />
+            </Component>
+            <Component Id="jquery_1.7.1.min.js" Directory="assets" Guid="{D5810B19-F289-4C01-8ADA-35AA01ED1286}">
+                <File Id="jquery_1.7.1.min.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\jquery-1.7.1.min.js" />
+            </Component>
+            <Component Id="jquery_1.8.3.min.js" Directory="assets" Guid="{BDBC5155-7DF6-4102-928D-4A84963D207C}">
+                <File Id="jquery_1.8.3.min.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\jquery-1.8.3.min.js" />
+            </Component>
+            <Component Id="jquery.validate.min.js" Directory="assets" Guid="{4F89F074-F667-4AE0-BE39-11355BD42D7A}">
+                <File Id="jquery.validate.min.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\jquery.validate.min.js" />
+            </Component>
+            <Component Id="md5.js" Directory="assets" Guid="{4C91A579-887A-4921-B947-04ECB4AC6617}">
+                <File Id="md5.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\md5.js" />
+            </Component>
+            <Component Id="bootstrap_alert.js" Directory="bootstrap" Guid="{37D5C3E0-675F-48E2-864B-6A1BF24BF0CC}">
+                <File Id="bootstrap_alert.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\bootstrap-alert.js" />
+            </Component>
+            <Component Id="bootstrap_button.js" Directory="bootstrap" Guid="{98FF9658-A847-4FB1-85F6-4BCCFDCEBC04}">
+                <File Id="bootstrap_button.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\bootstrap-button.js" />
+            </Component>
+            <Component Id="bootstrap_carousel.js" Directory="bootstrap" Guid="{99503D09-34C0-46A6-AC58-7DBB62322431}">
+                <File Id="bootstrap_carousel.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\bootstrap-carousel.js" />
+            </Component>
+            <Component Id="bootstrap_collapse.js" Directory="bootstrap" Guid="{8A42AE80-7049-4F2D-9F9B-9947F79F8DE5}">
+                <File Id="bootstrap_collapse.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\bootstrap-collapse.js" />
+            </Component>
+            <Component Id="bootstrap_dropdown.js" Directory="bootstrap" Guid="{C577736C-9E72-4874-B982-0CA5A01D6314}">
+                <File Id="bootstrap_dropdown.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\bootstrap-dropdown.js" />
+            </Component>
+            <Component Id="bootstrap_modal.js" Directory="bootstrap" Guid="{486B0098-C1F4-46A6-89C7-6B58E136861B}">
+                <File Id="bootstrap_modal.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\bootstrap-modal.js" />
+            </Component>
+            <Component Id="bootstrap_tab.js" Directory="bootstrap" Guid="{2614DED8-488A-4432-B4C5-6E7F73F529E0}">
+                <File Id="bootstrap_tab.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\bootstrap-tab.js" />
+            </Component>
+            <Component Id="bootstrap_transition.js" Directory="bootstrap" Guid="{9E3FAAE6-AF95-4A61-8B04-733AD359442A}">
+                <File Id="bootstrap_transition.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\bootstrap-transition.js" />
+            </Component>
+            <Component Id="bootstrap_responsive.css" Directory="css" Guid="{B0D19586-7C26-48C0-9F42-F9ED81E7EBB0}">
+                <File Id="bootstrap_responsive.css" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\css\bootstrap-responsive.css" />
+            </Component>
+            <Component Id="bootstrap_responsive.min.css" Directory="css" Guid="{6FCD97DE-9A67-40A7-8846-0512640BA4A4}">
+                <File Id="bootstrap_responsive.min.css" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\css\bootstrap-responsive.min.css" />
+            </Component>
+            <Component Id="bootstrap.css" Directory="css" Guid="{8F95D7D5-5692-4AB8-B02F-107738EBF844}">
+                <File Id="bootstrap.css" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\css\bootstrap.css" />
+            </Component>
+            <Component Id="bootstrap.min.css" Directory="css" Guid="{0A503B05-D236-461E-8398-5C1FD9AAECE6}">
+                <File Id="bootstrap.min.css" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\css\bootstrap.min.css" />
+            </Component>
+            <Component Id="glyphicons_halflings_white.png" Directory="img" Guid="{CCBD230D-3B33-4219-B419-15B1F0B3DBD6}">
+                <File Id="glyphicons_halflings_white.png" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\img\glyphicons-halflings-white.png" />
+            </Component>
+            <Component Id="glyphicons_halflings.png" Directory="img" Guid="{C853774B-0245-4756-9DDA-E74463D92EFC}">
+                <File Id="glyphicons_halflings.png" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\img\glyphicons-halflings.png" />
+            </Component>
+            <Component Id="bootstrap.js" Directory="js" Guid="{329B93AD-352D-4A1E-9B16-17C1BA796B94}">
+                <File Id="bootstrap.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\js\bootstrap.js" />
+            </Component>
+            <Component Id="bootstrap.min.js" Directory="js" Guid="{414B3931-18DA-40C1-84C2-0484558553D5}">
+                <File Id="bootstrap.min.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\bootstrap\js\bootstrap.min.js" />
+            </Component>
+            <Component Id="closetag.js" Directory="codemirror" Guid="{ADB6A71E-4B08-4E49-9B9D-425399C74523}">
+                <File Id="closetag.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\codemirror\closetag.js" />
+            </Component>
+            <Component Id="codemirror.css" Directory="codemirror" Guid="{0D860A5C-711C-46ED-BF40-1636379D0A55}">
+                <File Id="codemirror.css" KeyPath="yes" Source="!(wix.WwwPath)\assets\codemirror\codemirror.css" />
+            </Component>
+            <Component Id="codemirror.js" Directory="codemirror" Guid="{A1FFD569-F66F-4932-92B7-C8925B3B081F}">
+                <File Id="codemirror.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\codemirror\codemirror.js" />
+            </Component>
+            <Component Id="simple_hint.css" Directory="codemirror" Guid="{B6EC116A-8443-48AE-AF91-5ED76824F04C}">
+                <File Id="simple_hint.css" KeyPath="yes" Source="!(wix.WwwPath)\assets\codemirror\simple-hint.css" />
+            </Component>
+            <Component Id="simple_hint.js" Directory="codemirror" Guid="{91A323E7-E489-44AE-BE74-3DFB9346706A}">
+                <File Id="simple_hint.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\codemirror\simple-hint.js" />
+            </Component>
+            <Component Id="xml_hint.js" Directory="codemirror" Guid="{BBC90357-85BD-4CA3-A04B-8CC0A6729F3C}">
+                <File Id="xml_hint.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\codemirror\xml-hint.js" />
+            </Component>
+            <Component Id="xml.js" Directory="codemirror" Guid="{4EB3A742-D101-496A-A995-EDB53DF18A94}">
+                <File Id="xml.js" KeyPath="yes" Source="!(wix.WwwPath)\assets\codemirror\xml.js" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="Www">
+            <Directory Id="assets" Name="assets" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="assets">
+            <Directory Id="bootstrap" Name="bootstrap" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="assets">
+            <Directory Id="codemirror" Name="codemirror" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="bootstrap">
+            <Directory Id="css" Name="css" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="bootstrap">
+            <Directory Id="img" Name="img" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="bootstrap">
+            <Directory Id="js" Name="js" />
+        </DirectoryRef>
+    </Fragment>
+</Wix>

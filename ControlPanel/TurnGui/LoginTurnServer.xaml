@@ -1,0 +1,24 @@
+﻿<Window x:Class="ControlPanel.LoginTurnServer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ControlPanel"
+    Title="Turn Server Login" Width="320" ResizeMode="NoResize"
+    SnapsToDevicePixels="True" SizeToContent="Height" ShowInTaskbar="False"
+    WindowStartupLocation="CenterScreen">
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <StackPanel Style="{StaticResource WindowPanel}">
+        <Label>Server address (leave empty to disable):</Label>
+        <TextBox Name="address" TextChanged="address_TextChanged"></TextBox>
+        <Label>Server url:</Label>
+        <TextBox Name="url"></TextBox>
+        <Label>Login</Label>
+        <TextBox Name="username">administrator</TextBox>
+        <Label>Password</Label>
+        <PasswordBox Name="password"></PasswordBox>
+        <StackPanel Style="{StaticResource BottomButtons}">
+            <Button IsCancel="True">Cancel</Button>
+            <Button IsDefault="True" Name="ok" Click="ok_Click">Ok</Button>
+        </StackPanel>
+    </StackPanel>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+</Window>

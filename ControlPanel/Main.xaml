@@ -1,0 +1,261 @@
+﻿<Window x:Class="ControlPanel.Main"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ControlPanel"
+    xmlns:local="clr-namespace:ImageSnappingToPixels" WindowStartupLocation="CenterScreen"
+    Title="OfficeSIP Server - Control Panel" Height="620" Width="600" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MainResources.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="72"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="8">
+            <TextBlock FontFamily="Trebuchet MS, Helvetica, Sans-serif" FontSize="48" TextAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="Green">Office</TextBlock>
+                    <TextBlock>SIP Server</TextBlock>
+                </StackPanel>
+            </TextBlock>
+            <TextBlock Name="processingIndicator" Visibility="Hidden" TextAlignment="Right" FontWeight="Bold" Foreground="DarkBlue">
+                Processing...
+            </TextBlock>
+            <!--
+            <Image Source="{StaticResource presenceOnline}" Height="10" Width="10"></Image>
+            -->
+        </Grid>
+        <!-- * -->
+        <TabControl Grid.Row="1" Margin="4 4 4 4" TabStripPlacement="Right" Name="tabControl1">
+            <!-- Tab : Home -->
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Style="{StaticResource TabHeaderStyle}">
+                        <local:Bitmap Source="Images\MainTab\home_page.png" />
+                        <TextBlock Style="{StaticResource TabHeaderTextStyle}">Home</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+                        <Label FontWeight="Bold" FontSize="19">
+                            <TextBlock>OfficeSIP Server <TextBlock Visibility="{Binding Path=ServerVersion, Converter={StaticResource VisibilityConverter}}"><TextBlock Text="{Binding Path=ServerVersion.Major}"></TextBlock>.<TextBlock Text="{Binding Path=ServerVersion.Minor}"></TextBlock><TextBlock FontWeight="Normal" FontSize="14">.<TextBlock Text="{Binding Path=ServerVersion.Build}"></TextBlock></TextBlock><TextBlock Foreground="LightGray" FontSize="10" FontWeight="Normal">.<TextBlock Text="{Binding Path=ServerVersion.Revision}"></TextBlock></TextBlock></TextBlock></TextBlock>
+                        </Label>
+                        <Label>
+                            <TextBlock>Homepage: <Hyperlink Command="l:Commands.ShellExecute" CommandParameter="http://www.officesip.com">http://www.officesip.com</Hyperlink></TextBlock>
+                        </Label>
+                        <Label>
+                            <TextBlock>E-mail: <Hyperlink Command="l:Commands.ShellExecute" CommandParameter="mailto:support@officesip.com">support@officesip.com</Hyperlink></TextBlock>
+                        </Label>
+                        <Label>
+                            <TextBlock TextWrapping="WrapWithOverflow">Copyright (C) 2007-2011 OfficeSIP Communications. All rights reserved.</TextBlock>
+                        </Label>
+                        <!--
+                        <GroupBox Header="Errors">
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Erros: 0</Label>
+                                <Label>Warings: 0</Label>
+                                <Button>View</Button>
+                            </StackPanel>
+                        </GroupBox>
+                        -->
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <!-- Tab : Users -->
+            <!--
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Style="{StaticResource TabHeaderStyle}">
+                        <local:Bitmap Source="Images\MainTab\group.png" />
+                        <TextBlock Style="{StaticResource TabHeaderTextStyle}">Users</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid IsEnabled="{Binding Path=UsersUpdating, Converter={StaticResource TrueFalseConverter}}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Visibility="{Binding Path=UsersUpdating, Converter={StaticResource VisibilityConverter}}" TextAlignment="Right" FontWeight="Bold" Foreground="DarkBlue">Updating...</TextBlock>
+                            <ListView Grid.Row="1" ItemsSource="{Binding Path=Users}" Name="usersList">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.Columns>
+                                            <GridViewColumn Header="" Width="28">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Image Width="14" Height="14" Source="{Binding Path=Availability, Converter={StaticResource AvailabilityConverter}}" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="Username" Width="100" DisplayMemberBinding="{Binding Path=Username}"></GridViewColumn>
+                                            <GridViewColumn Header="Display Name" Width="200" DisplayMemberBinding="{Binding Path=DisplayName}"></GridViewColumn>
+                                        </GridView.Columns>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <StackPanel Grid.Row="2" Style="{StaticResource BottomButtons}" Visibility="{Binding Path=Config.NativeMode, Converter={StaticResource VisibilityConverter}}">
+                                <Button Command="l:Commands.AddUser" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                                <Button Command="l:Commands.RemoveUser" CommandTarget="{Binding ElementName=usersList}" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                                <Button Command="l:Commands.EditUser" CommandTarget="{Binding ElementName=usersList}" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                                <Button Command="l:Commands.ChangeUserPassword" CommandTarget="{Binding ElementName=usersList}" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                            </StackPanel>
+                            <TextBlock Grid.Row="2" Foreground="Gray" HorizontalAlignment="Right" Visibility="{Binding Path=Config.ActiveDirectoryMode, Converter={StaticResource VisibilityConverter}}">Use Active Directory Managing tool to edit this list.</TextBlock>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            -->
+            <!-- Tab : VoIP Providers -->
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Style="{StaticResource TabHeaderStyle}">
+                        <local:Bitmap Source="Images\MainTab\telephone.png"/>
+                        <TextBlock Style="{StaticResource TabHeaderTextStyle}">VoIP Providers</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid IsEnabled="{Binding Path=VoipProvidersUpdating, Converter={StaticResource TrueFalseConverter}}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Visibility="{Binding Path=VoipProvidersUpdating, Converter={StaticResource VisibilityConverter}}" TextAlignment="Right" FontWeight="Bold" Foreground="DarkBlue">Loading...</TextBlock>
+                            <ListView Grid.Row="1" ItemsSource="{Binding Path=VoipProviders}" Name="voipProvidersList">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.Columns>
+                                            <GridViewColumn Header="Username" Width="100" DisplayMemberBinding="{Binding Path=Username}"></GridViewColumn>
+                                            <GridViewColumn Header="Hostname" Width="100" DisplayMemberBinding="{Binding Path=Hostname}"></GridViewColumn>
+                                            <GridViewColumn Header="State" Width="200" DisplayMemberBinding="{Binding Path=ErrorMessage}"></GridViewColumn>
+                                            <GridViewColumn Header="Forward call to" Width="200" DisplayMemberBinding="{Binding Path=ForwardCallTo}"></GridViewColumn>
+                                            <GridViewColumn Header="Outgoing proxy transport" Width="60" DisplayMemberBinding="{Binding Path=Transport}"></GridViewColumn>
+                                            <GridViewColumn Header="Outgoing proxy" Width="200" DisplayMemberBinding="{Binding Path=OutgoingProxy}"></GridViewColumn>
+                                            <GridViewColumn Header="Display name" Width="200" DisplayMemberBinding="{Binding Path=DisplayName}"></GridViewColumn>
+                                            <GridViewColumn Header="Authentication ID" Width="200" DisplayMemberBinding="{Binding Path=AuthenticationId}"></GridViewColumn>
+                                            <GridViewColumn Header="Local IP end point" Width="200" DisplayMemberBinding="{Binding Path=LocalEndPoint}"></GridViewColumn>
+                                        </GridView.Columns>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <StackPanel Grid.Row="2" Style="{StaticResource BottomButtons}">
+                                <Button Command="l:Commands.AddVoipProvider" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                                <Button Command="l:Commands.RemoveVoipProvider" CommandTarget="{Binding ElementName=voipProvidersList}" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <!-- Tab : Turn Server 
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Style="{StaticResource TabHeaderStyle}">
+                        <TextBlock>Turn Server</TextBlock>
+                        <StackPanel HorizontalAlignment="Center">
+                            <local:Bitmap  Source="Images\MainTab\Settings.png" />
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+                        <TextBlock Visibility="{Binding Path=TurnUpdating, Converter={StaticResource VisibilityConverter}}" TextAlignment="Right" FontWeight="Bold" Foreground="DarkBlue">Updating...</TextBlock>
+                        <TextBlock Visibility="{Binding Path=TurnUpdatingError, Converter={StaticResource VisibilityConverter}}" FontWeight="Bold" Foreground="Red" Text="{Binding Path=TurnUpdatingError}" TextWrapping="WrapWithOverflow"></TextBlock>
+                        <Label>Turn Server Address:</Label>
+                        <TextBox Text="{Binding Path=Config.TurnServerUrl}"></TextBox>
+                        <Button Margin="0,10,0,10" Command="l:Commands.GetTurnServerSettings" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                        <Label>Turn Udp Port:</Label>
+                        <TextBox></TextBox>
+                        <Label>Turn Tcp Port:</Label>
+                        <TextBox></TextBox>
+                        <Label>Public Ip:</Label>
+                        <TextBox Text="{Binding TurnConfig.PublicIp}"></TextBox>
+                        <Label>Public Ports Range:</Label>
+                        <UniformGrid Rows="1" Columns="2">
+                            <TextBox Margin="0,0,5,0" Text="{Binding TurnConfig.MinPort}"></TextBox>
+                            <TextBox Margin="5,0,0,0" Text="{Binding TurnConfig.MaxPort}"></TextBox>
+                        </UniformGrid>
+                        <Label>Realm</Label>
+                        <TextBox Text="{Binding TurnConfig.Realm}"></TextBox>
+                        <Label>Authentification Key1</Label>
+                        <TextBox></TextBox>
+                        <Label>Authorization Key2</Label>
+                        <TextBox></TextBox>
+                        <Button Margin="0,4,0,0">Generate new keys</Button>
+                        <Button Margin="0,20,0,0" Command="l:Commands.SetTurnServer" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            -->
+            <!-- Tab : Settings -->
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Style="{StaticResource TabHeaderStyle}">
+                        <local:Bitmap Source="Images\MainTab\setting_tools.png" />
+                        <TextBlock Style="{StaticResource TabHeaderTextStyle}">Settings</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" IsEnabled="{Binding Path=Config.Updating, Converter={StaticResource TrueFalseConverter}}">
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Top">
+                                <TextBlock Visibility="{Binding Path=Config.Updating, Converter={StaticResource VisibilityConverter}}" TextAlignment="Right" FontWeight="Bold" Foreground="DarkBlue">Updating...</TextBlock>
+                                <TextBlock Visibility="{Binding Path=Config.RebootRequired, Converter={StaticResource VisibilityConverter}}" FontWeight="Bold" Foreground="Red">The service must be restarted in order to apply the changes</TextBlock>
+                                <CheckBox IsChecked="{Binding Path=Config.ActiveDirectoryMode}">
+                                    <TextBlock TextWrapping="WrapWithOverflow" Padding="0,0,0,5">Pull-in user from Active Directory and use domain authorization instead of native one, this enables <Hyperlink Command="l:Commands.ShellExecute" CommandParameter="http://en.wikipedia.org/wiki/Single_sign-on">single sign-on</Hyperlink> feature. A user gain access to office sip server if he is logged in Windows domain</TextBlock>
+                                </CheckBox>
+                                <Label>Pull-in users from specific AD group (all users if empty)</Label>
+                                <TextBox Width="200" HorizontalAlignment="Left" Margin="0,0,0,5" Text="{Binding Path=Config.ActiveDirectoryGroup}"></TextBox>
+                                <!-- <CheckBox IsChecked="{Binding Path=Config.AuthDisabled}">Disable user authorization</CheckBox> -->
+                                <Label>SIP domain name:</Label>
+                                <TextBox Width="200" Text="{Binding Path=Config.HomeDomain}" HorizontalAlignment="Left"></TextBox>
+                                <CheckBox Margin="0,15,0,0" Name="enableTracing" IsChecked="{Binding Path=Config.EnableTracing}">Enable tracing for trobleshooting purpose</CheckBox>
+                                <Label IsEnabled="{Binding ElementName=enableTracing, Path=IsChecked, Mode=OneWay}">All tracing logs can be found in this folder on the server:</Label>
+                                <TextBox IsEnabled="{Binding ElementName=enableTracing, Path=IsChecked, Mode=OneWay}" Margin="0,0,20,0" Text="{Binding Path=Config.TracingPath, Mode=OneWay}" IsReadOnly="True"></TextBox>
+                                <StackPanel Style="{StaticResource BottomButtons}">
+                                    <!--
+                                <Button Command="l:Commands.ResetSettings" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                                -->
+                                    <Button IsDefault="True" Command="l:Commands.ApplySettings" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                                </StackPanel>
+                                <!-- 
+                            <Label Padding="10"></Label>
+                            <Label>Administartor password:</Label>
+                            <PasswordBox IsEnabled="{Binding Path=AdminPassChanging, Converter={StaticResource TrueFalseConverter}}" Width="200" Name="adminPassword" HorizontalAlignment="Left"></PasswordBox>
+                            <StackPanel Style="{StaticResource BottomButtons}">
+                                <Button CommandTarget="{Binding ElementName=adminPassword}" Command="l:Commands.ChangeAdminPassword" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                            </StackPanel>
+                            <Label>Turn server:</Label>
+                            <TextBox Text="{Binding Path=TurnConfig.FQDN}" Width="200" HorizontalAlignment="Left" IsReadOnly="True"></TextBox>
+                            <StackPanel Style="{StaticResource BottomButtons}">
+                                <Button IsDefault="True" Command="l:Commands.ConfigTurnServer" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                            </StackPanel>
+                            -->
+                            </StackPanel>
+                            <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+                                <Label>
+                                    <Hyperlink Command="l:Commands.ConfigTurnServer">Configure TURN server</Hyperlink>
+                                </Label>
+                                <Label>
+                                    <Hyperlink Command="l:Commands.ChangeAdminPassword">Change administrator's password</Hyperlink>
+                                </Label>
+                            </StackPanel>
+                        </DockPanel>
+                    </ScrollViewer>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+</Window>

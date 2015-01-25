@@ -1,0 +1,39 @@
+﻿<Window x:Class="ControlPanel.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ControlPanel"
+    xmlns:i="clr-namespace:ImageSnappingToPixels"
+    Title="OfficeSIP Server - Control Panel // Login" Width="350" SizeToContent="Height" ResizeMode="CanMinimize"
+    WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <StackPanel Style="{StaticResource WindowPanel}">
+        <Label>
+            <TextBlock>
+                Control Panel <TextBlock Text="{Binding Path=Version.Major}"></TextBlock>.<TextBlock Text="{Binding Path=Version.Minor}"></TextBlock><TextBlock>.<TextBlock Text="{Binding Path=Version.Build}"></TextBlock></TextBlock> compatible with the Server <TextBlock Text="{Binding Path=CompatibleVersions}"></TextBlock>
+            </TextBlock>
+        </Label>
+        <Label IsEnabled="{Binding Path=IsEditingEnabled}">Server address:</Label>
+        <TextBox IsEnabled="{Binding Path=IsEditingEnabled}" Name="url">net.tcp://localhost:10001/officesip</TextBox>
+        <Label IsEnabled="{Binding Path=IsEditingEnabled}">Login:</Label>
+        <TextBox IsEnabled="{Binding Path=IsEditingEnabled}" Name="user">administrator</TextBox>
+        <Label IsEnabled="{Binding Path=IsEditingEnabled}">Password:</Label>
+        <PasswordBox IsEnabled="{Binding Path=IsEditingEnabled}" Name="password"></PasswordBox>
+        <Label>Action when connected:</Label>
+        <RadioButton IsChecked="True" x:Name="classicMode">Open users management and configuration window</RadioButton>
+        <RadioButton>Open XML configuration window</RadioButton>
+        <Grid>
+            <StackPanel Style="{StaticResource BottomButtons}" HorizontalAlignment="Left">
+                <Button Command="l:Commands.ServiceControl" IsEnabled="{Binding Path=IsEditingEnabled}">
+                    <StackPanel Orientation="Horizontal">
+                        <i:Bitmap Source="Images\Windows-Security.png" x:Name="shield" />
+                        <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}, Path=Command.Text}"></TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel Style="{StaticResource BottomButtons}">
+                <Button Command="l:Commands.Close" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                <Button IsDefault="True" Command="l:Commands.Connect" IsEnabled="{Binding Path=IsEditingEnabled}" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+            </StackPanel>
+        </Grid>
+        <Label Visibility="{Binding Path=ConnectingVisibility}">Connecting...</Label>
+    </StackPanel>
+</Window>

@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:tns="http://officesip.com/server.control" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://officesip.com/server.control" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://officesip.com/server.control/Imports">
+      <xsd:import namespace="http://officesip.com/server.control" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Net" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Net.Sockets" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IWcfService_GetConfigurations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigurations" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetConfigurations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigurationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_SetConfigurations_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetConfigurations" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_SetConfigurations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetConfigurationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetUsersCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersCount" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetUsersCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_AddUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_AddUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_RemoveUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUser" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_RemoveUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_SetUserPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserPassword" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_SetUserPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetVoipProviders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVoipProviders" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetVoipProviders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVoipProvidersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_AddVoipProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddVoipProvider" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_AddVoipProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddVoipProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_RemoveVoipProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveVoipProvider" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_RemoveVoipProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveVoipProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVersion" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetDefaultXmlConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefaultXmlConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetDefaultXmlConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefaultXmlConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetXmlConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetXmlConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetXmlConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetXmlConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_SetXmlConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetXmlConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_SetXmlConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetXmlConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_ValidateXmlConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateXmlConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_ValidateXmlConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateXmlConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetTurnConfigurations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTurnConfigurations" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_GetTurnConfigurations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTurnConfigurationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_SetTurnConfigurations_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTurnConfigurations" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_SetTurnConfigurations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTurnConfigurationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_SetAdministratorPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetAdministratorPassword" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_SetAdministratorPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetAdministratorPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_AvailabilityChanged_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:AvailabilityChanged" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_NewClient_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NewClient" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_UsersReset_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UsersReset" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_UserAddedOrUpdated_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UserAddedOrUpdated" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_UserRemoved_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UserRemoved" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_VoipProviderUpdated_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:VoipProviderUpdated" />
+  </wsdl:message>
+  <wsdl:portType name="IWcfService">
+    <wsdl:operation name="GetConfigurations">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/GetConfigurations" message="tns:IWcfService_GetConfigurations_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/GetConfigurationsResponse" message="tns:IWcfService_GetConfigurations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetConfigurations">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/SetConfigurations" message="tns:IWcfService_SetConfigurations_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/SetConfigurationsResponse" message="tns:IWcfService_SetConfigurations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersCount">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/GetUsersCount" message="tns:IWcfService_GetUsersCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/GetUsersCountResponse" message="tns:IWcfService_GetUsersCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/GetUsers" message="tns:IWcfService_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/GetUsersResponse" message="tns:IWcfService_GetUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/AddUser" message="tns:IWcfService_AddUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/AddUserResponse" message="tns:IWcfService_AddUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/UpdateUser" message="tns:IWcfService_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/UpdateUserResponse" message="tns:IWcfService_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUser">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/RemoveUser" message="tns:IWcfService_RemoveUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/RemoveUserResponse" message="tns:IWcfService_RemoveUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserPassword">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/SetUserPassword" message="tns:IWcfService_SetUserPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/SetUserPasswordResponse" message="tns:IWcfService_SetUserPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVoipProviders">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/GetVoipProviders" message="tns:IWcfService_GetVoipProviders_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/GetVoipProvidersResponse" message="tns:IWcfService_GetVoipProviders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddVoipProvider">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/AddVoipProvider" message="tns:IWcfService_AddVoipProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/AddVoipProviderResponse" message="tns:IWcfService_AddVoipProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveVoipProvider">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/RemoveVoipProvider" message="tns:IWcfService_RemoveVoipProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/RemoveVoipProviderResponse" message="tns:IWcfService_RemoveVoipProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/Ping" message="tns:IWcfService_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/PingResponse" message="tns:IWcfService_Ping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/GetVersion" message="tns:IWcfService_GetVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/GetVersionResponse" message="tns:IWcfService_GetVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultXmlConfiguration">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/GetDefaultXmlConfiguration" message="tns:IWcfService_GetDefaultXmlConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/GetDefaultXmlConfigurationResponse" message="tns:IWcfService_GetDefaultXmlConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetXmlConfiguration">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/GetXmlConfiguration" message="tns:IWcfService_GetXmlConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/GetXmlConfigurationResponse" message="tns:IWcfService_GetXmlConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetXmlConfiguration">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/SetXmlConfiguration" message="tns:IWcfService_SetXmlConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/SetXmlConfigurationResponse" message="tns:IWcfService_SetXmlConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateXmlConfiguration">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/ValidateXmlConfiguration" message="tns:IWcfService_ValidateXmlConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/ValidateXmlConfigurationResponse" message="tns:IWcfService_ValidateXmlConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTurnConfigurations">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/GetTurnConfigurations" message="tns:IWcfService_GetTurnConfigurations_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/GetTurnConfigurationsResponse" message="tns:IWcfService_GetTurnConfigurations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTurnConfigurations">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/SetTurnConfigurations" message="tns:IWcfService_SetTurnConfigurations_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/SetTurnConfigurationsResponse" message="tns:IWcfService_SetTurnConfigurations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAdministratorPassword">
+      <wsdl:input wsaw:Action="http://officesip.com/server.control/IWcfService/SetAdministratorPassword" message="tns:IWcfService_SetAdministratorPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/SetAdministratorPasswordResponse" message="tns:IWcfService_SetAdministratorPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AvailabilityChanged">
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/AvailabilityChanged" message="tns:IWcfService_AvailabilityChanged_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewClient">
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/NewClient" message="tns:IWcfService_NewClient_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UsersReset">
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/UsersReset" message="tns:IWcfService_UsersReset_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserAddedOrUpdated">
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/UserAddedOrUpdated" message="tns:IWcfService_UserAddedOrUpdated_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserRemoved">
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/UserRemoved" message="tns:IWcfService_UserRemoved_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VoipProviderUpdated">
+      <wsdl:output wsaw:Action="http://officesip.com/server.control/IWcfService/VoipProviderUpdated" message="tns:IWcfService_VoipProviderUpdated_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

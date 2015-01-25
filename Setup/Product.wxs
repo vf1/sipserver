@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:fire="http://schemas.microsoft.com/wix/FirewallExtension">
+
+  <Product Version="!(bind.FileVersion.OfficeSipServerExe)" Id="0CF904A8-D803-42CE-91EB-2670F149A5F6" Name="OfficeSIP Server" Language="1033" Manufacturer="OfficeSIP Communications" UpgradeCode="68F26908-9A63-45B6-A840-5B398B759B29">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="Setup" Level="1">
+      <ComponentGroupRef Id="WwwFiles" />
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ApplicationStartMenu" />
+      <ComponentRef Id="DesktopUrl"/>
+    </Feature>
+
+    <!-- Check for .NET Framework Versions -->
+    <PropertyRef Id="NETFRAMEWORK35_SP_LEVEL"/>
+    <Condition Message="This application requires .NET Framework 3.5 SP1. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR (NETFRAMEWORK35_SP_LEVEL and NOT NETFRAMEWORK35_SP_LEVEL = "#0")]]>
+    </Condition>
+
+    <!-- Installer's Icon in Add/Remove Programs -->
+    <Icon Id="Main.ico" SourceFile="..\Server\Properties\OfficeSIP Server.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="Main.ico" />
+
+    <!-- UI -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_InstallDir" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+    <WixVariable Id="WixUIDialogBmp" Value="dlgbmp.bmp" />
+    <WixVariable Id="WixUIBannerBmp" Value="bannrbmp.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+
+    <!-- WwwFiles.wxs -->
+    <WixVariable Id="WwwPath" Value="..\Server\Www\" />
+    
+    <!-- EventSource -->
+    <PropertyRef Id="NETFRAMEWORK20INSTALLROOTDIR"/>
+
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="OfficeSIP Server">
+          <Directory Id="Www" Name="Www" />
+        </Directory>
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop" />
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramMenuFolder" Name="OfficeSIP Server"/>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- TODO: Insert files, registry keys, and other resources here. -->
+      <!-- -->
+      <Component Id="Service" Guid="CF048EA0-F2E8-4028-8A38-C26169608A5E">
+        <File Source="..\Server\bin\Release\CsvReader.dll"></File>
+        <File Source="..\Server\bin\Release\DnDns.dll"></File>
+        <File Source="..\Server\bin\Release\Http.Message.dfa"></File>
+        <File Source="..\Server\bin\Release\Http.Message.dll"></File>
+        <File Source="..\Server\bin\Release\Newtonsoft.Json.dll"></File>
+        <File Source="..\Server\bin\Release\OfficeSIP.pfx"></File>
+        <File Source="..\Server\bin\Release\OfficeSIP Server.exe.config"></File>
+        <File Source="..\Server\bin\Release\Server.Restapi.dfa"></File>
+        <File Source="..\Server\bin\Release\Server.Xcap.dfa"></File>
+        <File Source="..\Server\bin\Release\Sip.Message.dfa"></File>
+        <File Source="..\Server\bin\Release\Sip.Message.dll"></File>
+        <File Source="..\Server\bin\Release\SocketServers.dll"></File>
+        <!-- ~~~~~~~ -->
+        <util:EventSource Log="Application" Name="OfficeSIP Server" EventMessageFile="[NETFRAMEWORK20INSTALLROOTDIR]EventLogMessages.dll" />
+        <File Id="OfficeSipServerExe" Source="..\Server\bin\Release\OfficeSIP Server.exe" KeyPath="yes"></File>
+        <ServiceInstall Id="ServiceInstall" Type="ownProcess" Vital="yes" Name="OfficeSIP Server" Start="auto" Account="[SERVICEACCOUNT]" Password="[SERVICEPASSWORD]" ErrorControl="ignore" Interactive="no" Description="Service of the OfficeSIP Server"></ServiceInstall>
+        <ServiceControl Id="StartService" Start="install" Stop="both" Remove="uninstall" Name="OfficeSIP Server" Wait="yes" />
+        <fire:FirewallException Id="OfficeSipServerExeFirewall" File="OfficeSipServerExe" Name="OfficeSIP Server - Service" Description="This exception was added by the installer." Scope="any" IgnoreFailure="yes"></fire:FirewallException>
+      </Component>
+
+      <Component Id="ControlPanel" Guid="C581880D-C57D-471A-A2D8-73F2174CC45F">
+        <File Source="..\ControlPanel\bin\Release\ControlPanel.exe" Id="ControlPanelExe" KeyPath="yes">
+          <Shortcut Id="ControlPanel.Desktop" Directory="DesktopFolder" Name="OfficeSIP - Control Panel" Advertise="yes" Icon="Main.ico"></Shortcut>
+        </File>
+        <File Source="..\ControlPanel\bin\Release\DataVirtualization.dll"></File>
+        <File Source="..\ControlPanel\bin\Release\ICSharpCode.AvalonEdit.dll"></File>
+        <fire:FirewallException Id="ControlPanelExeFirewall" File="ControlPanelExe" Name="OfficeSIP Server - Control Panel" Description="This exception was added by the installer." Scope="any" IgnoreFailure="yes"></fire:FirewallException>
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+  <Fragment>
+    <Component Id="DesktopUrl" Guid="2DCF2E2B-4EEC-4346-9462-7808A6A47638" Directory="DesktopFolder">
+      <util:InternetShortcut Id="WebControlPanelShortcut.Desktop" Name="OfficeSIP - Web Control Panel" Target="http://localhost:5060/admin/" Type="url" />
+      <RegistryValue Root="HKCU" Key="Software\Microsoft\OfficeSIP Server" Name="desktop" Type="integer" Value="1" KeyPath="yes"/>
+    </Component>
+  </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="ApplicationProgramMenuFolder">
+      <Component Id="ApplicationStartMenu" Guid="26C4AAD9-400A-44BA-BC2F-69E831204DAB">
+        <util:InternetShortcut Id="WebControlPanelShortcut.StartMenu" Name="OfficeSIP - Web Control Panel" Target="http://localhost:5060/admin/" Type="url" />
+        <Shortcut Id="ControlPanelShortcut"
+                  Name="Control Panel"
+                  Description="OfficeSIP Server"
+                  Icon="Main.ico"
+                  Target="[INSTALLFOLDER]ControlPanel.exe"
+                  WorkingDirectory="INSTALLFOLDER"/>
+        <RemoveFolder Id="ApplicationProgramMenuFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\OfficeSIP Server" Name="startmenu" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+</Wix>

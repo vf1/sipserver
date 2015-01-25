@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\WiX Toolset v3.6\bin\heat.exe" dir "..\Server\Www" -var wix.WwwPath -suid -cg WwwFiles -gg -out WwwFiles.wxs

@@ -1,0 +1,32 @@
+﻿<xs:schema targetNamespace="http://schemas.microsoft.com/2006/09/sip/categories" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://schemas.microsoft.com/2006/09/sip/categories" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rpc="http://schemas.microsoft.com/2006/09/sip/rich-presence-common">
+  <xs:import namespace="http://schemas.microsoft.com/2006/09/sip/rich-presence-common" schemaLocation="RichPresenceCommon.xsd"/>
+  <xs:complexType name="CategoryType">
+    <xs:sequence>
+      <xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="instance" type="xs:unsignedInt" use="optional"/>
+    <xs:attribute name="publishTime" type="xs:string" use="optional"/>
+    <xs:attribute name="container" type="rpc:ContainerId" use="optional"/>
+    <xs:attribute name="version" type="xs:unsignedInt" use="optional"/>
+    <xs:attribute name="expireType" use="optional">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="static"/>
+          <xs:enumeration value="endpoint"/>
+          <xs:enumeration value="user"/>
+          <xs:enumeration value="time"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="endpointId" type="xs:string" use="optional"/>
+    <xs:attribute name="expires" type="xs:integer" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="CategoriesType">
+    <xs:sequence>
+      <xs:element name="category" type="CategoryType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+  </xs:complexType>
+  <xs:element name="categories" type="CategoriesType"/>
+</xs:schema>

@@ -1,0 +1,14 @@
+﻿<xs:schema targetNamespace="http://schemas.microsoft.com/2006/09/sip/rich-presence-common" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://schemas.microsoft.com/2006/09/sip/rich-presence-common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="ContainerId">
+    <xs:restriction base="xs:unsignedShort">
+      <xs:maxInclusive value="32767"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ContainerIdForSetContainer">
+    <xs:restriction base="xs:unsignedShort">
+      <!-- Container 0 is not meant to be modified. It is the default container with assumed membership, and logically has no membership list. -->
+      <xs:minExclusive value="0"/>
+      <xs:maxInclusive value="32767"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

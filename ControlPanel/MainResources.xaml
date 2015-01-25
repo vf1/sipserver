@@ -1,0 +1,27 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ControlPanel">
+
+    <Style x:Key="TabHeaderStyle">
+        <Setter Property="StackPanel.Width" Value="144"></Setter>
+        <Setter Property="StackPanel.Height" Value="36"></Setter>
+        <Setter Property="StackPanel.Orientation" Value="Horizontal"></Setter>
+        <!--
+        <Setter Property="TextBlock.FontSize" Value="12"></Setter>-->
+        <Setter Property="TextBlock.FontWeight" Value="Bold"></Setter>
+    </Style>
+
+    <Style x:Key="TabHeaderTextStyle">
+        <Setter Property="TextBlock.VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="TextBlock.Padding" Value="5 0 0 0"></Setter>
+    </Style>
+
+    <l:VisibilityConverter x:Key="VisibilityConverter"></l:VisibilityConverter>
+<!--
+    <l:BoolVisibalityConverter x:Key="BoolVisibalityConverter"></l:BoolVisibalityConverter>-->
+    <l:TrueFalseConverter x:Key="TrueFalseConverter"></l:TrueFalseConverter>
+    <l:AvailabilityConverter x:Key="AvailabilityConverter"></l:AvailabilityConverter>
+    <l:LoadingConverter x:Key="LoadingConverter"></l:LoadingConverter>
+
+</ResourceDictionary>

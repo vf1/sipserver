@@ -1,0 +1,32 @@
+﻿
+API         =  "/api" (ACCOUNTS / OPTIONS / VERSION / ROLE) [ "?" PARAM *( "&" PARAM ) ]
+
+VERSION     =  "/version"
+
+OPTIONS     =  "/options"
+
+ROLE        =  "/role"
+
+ACCOUNTS    =  "/accounts"  [ "/" DOMAIN-NAME [ USERZ ]]
+DOMAIN-NAME =  1*64 (LOALPHA / DIGIT / safe)
+
+USERZ       =  "/userz" [ "/" USERS-ID [ "/" USERNAME ] ]
+USERS-ID    =  1*4 LOALPHA
+USERNAME    =  1*32 (LOALPHA / DIGIT / safe)
+
+PARAM            =  METHOD-PARAM / TIMESTAMP-PARAM / SIGNATURE-PARAM / AUTHNAME-PARAM / STARTINDEX-PARAM / COUNT-PARAM
+METHOD-PARAM     =  "method=" ( "PUT" / "DELETE" )
+TIMESTAMP-PARAM  =  "time=" 1*16 DIGIT
+AUTHNAME-PARAM   =  "user=" USERNAME
+SIGNATURE-PARAM  =  "sig=" 32 HEX
+STARTINDEX-PARAM =  "start=" 1*8 DIGIT
+COUNT-PARAM      =  "count=" 1*8 DIGIT
+
+DIGIT      =  %x30-39
+LOALPHA    =  %x61-7A
+UPALPHA    =  %x41-5A
+ALPHA      =  UPALPHA / LOALPHA
+HEX        =  "A" / "B" / "C" / "D" / "E" / "F"
+           /  "a" / "b" / "c" / "d" / "e" / "f" / DIGIT
+escape     =  "%" HEX HEX
+safe       =  "-" / "_" / "."

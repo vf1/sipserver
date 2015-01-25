@@ -1,0 +1,59 @@
+﻿<Window x:Class="ControlPanel.EditTurnServer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ControlPanel"
+    Title="Edit Turn Server" Width="360" ResizeMode="NoResize"
+    SnapsToDevicePixels="True" SizeToContent="Height" ShowInTaskbar="False"
+    WindowStartupLocation="CenterScreen">
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <StackPanel Style="{StaticResource WindowPanel}">
+        <Label>Administrator name and password:</Label>
+        <UniformGrid Rows="1" Columns="2">
+            <TextBox Name="adminName" Margin="0,0,3,0"></TextBox>
+            <PasswordBox Name="adminPass" Margin="3,0,0,0"></PasswordBox>
+        </UniformGrid>
+        <Label Margin="0,10,0,0">Turn server address:</Label>
+        <TextBox Name="serverAddress" IsReadOnly="True"></TextBox>
+        <UniformGrid Rows="1" Columns="3">
+            <Label>Turn UDP port:</Label>
+            <Label>Turn TCP port:</Label>
+            <Label>Turn TLS port:</Label>
+        </UniformGrid>
+        <UniformGrid Rows="1" Columns="3">
+            <TextBox Name="turnUdpPort" Margin="0,0,3,0" Text="{l:Validator Rule=PortValidationRule}" MaxLength="{x:Static Member=l:MaxLength.Port}"></TextBox>
+            <TextBox Name="turnTcpPort" Margin="3,0,3,0" Text="{l:Validator Rule=PortValidationRule}" MaxLength="{x:Static Member=l:MaxLength.Port}"></TextBox>
+            <TextBox Name="turnTlsPort" Margin="3,0,0,0" Text="{l:Validator Rule=PortValidationRule}" MaxLength="{x:Static Member=l:MaxLength.Port}"></TextBox>
+        </UniformGrid>
+        <RadioButton Name="useTcp">Use TCP port</RadioButton>
+        <RadioButton Name="useTls">Use pseudo TLS port</RadioButton>
+        <Label Margin="0,10,0,0">Public IP:</Label>
+        <TextBox Name="publicIp" Text="{l:Validator Rule=IPAddressValidationRule}"></TextBox>
+        <Label>Public ports range:</Label>
+        <UniformGrid Rows="1" Columns="2">
+            <TextBox Name="publicMinPort" Margin="0,0,5,0" Text="{l:Validator Rule=PortValidationRule}" MaxLength="{x:Static Member=l:MaxLength.Port}"></TextBox>
+            <TextBox Name="publicMaxPort" Margin="5,0,0,0" Text="{l:Validator Rule=PortValidationRule}" MaxLength="{x:Static Member=l:MaxLength.Port}"></TextBox>
+        </UniformGrid>
+        <Label Margin="0,10,0,0">Realm:</Label>
+        <TextBox Name="realm"></TextBox>
+        <Label>Authentification key1:</Label>
+        <TextBox Name="key1" Text="{l:Validator Rule=Key12ValidationRule}"></TextBox>
+        <Label>Authorization key2:</Label>
+        <TextBox Name="key2" Text="{l:Validator Rule=Key12ValidationRule}"></TextBox>
+        <StackPanel Style="{StaticResource BottomButtons}">
+            <Button Click="NewKeys_Click">New Keys</Button>
+            <Button IsCancel="True">Cancel</Button>
+            <Button IsDefault="True" Name="ok" Click="Ok_Click">Ok</Button>
+        </StackPanel>
+    </StackPanel>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+</Window>

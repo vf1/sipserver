@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://officesip.com/server.control" elementFormDefault="qualified" targetNamespace="http://officesip.com/server.control" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Net" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="GetConfigurations">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConfigurationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetConfigurationsResult" nillable="true" type="tns:Configurations" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="Configurations">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveDirectoryUsersGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DomainName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsActiveDirectoryUsersEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsAuthorizationEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsTracingEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TracingFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUsers" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Configurations" nillable="true" type="tns:Configurations" />
+  <xs:complexType name="ArrayOfUsers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Users" nillable="true" type="tns:Users" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUsers" nillable="true" type="tns:ArrayOfUsers" />
+  <xs:complexType name="Users">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsReadOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SourceName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Users" nillable="true" type="tns:Users" />
+  <xs:element name="SetConfigurations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="configurations" nillable="true" type="tns:Configurations" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetConfigurationsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetUsersCountResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="startIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetUsersResult" nillable="true" type="tns:ArrayOfUser" />
+        <xs:element minOccurs="0" name="overallCount" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Availability" type="xs:int" />
+      <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:element name="AddUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usersId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="user" nillable="true" type="tns:User" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usersId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="user" nillable="true" type="tns:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usersId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserPassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usersId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserPasswordResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVoipProviders">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVoipProvidersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetVoipProvidersResult" nillable="true" type="tns:ArrayOfVoipProvider" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfVoipProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VoipProvider" nillable="true" type="tns:VoipProvider" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVoipProvider" nillable="true" type="tns:ArrayOfVoipProvider" />
+  <xs:complexType name="VoipProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthenticationId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ForwardCallTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Hostname" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Net" minOccurs="0" name="LocalEndPoint" nillable="true" type="q1:IPEndPoint" />
+      <xs:element minOccurs="0" name="OutgoingProxy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Transport" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VoipProvider" nillable="true" type="tns:VoipProvider" />
+  <xs:element name="AddVoipProvider">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="provider" nillable="true" type="tns:VoipProvider" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddVoipProviderResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveVoipProvider">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hostname" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveVoipProviderResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Ping">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PingResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVersion">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVersionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="GetVersionResult" nillable="true" type="q2:Version" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDefaultXmlConfiguration">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDefaultXmlConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDefaultXmlConfigurationResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetXmlConfiguration">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetXmlConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetXmlConfigurationResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetXmlConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetXmlConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SetXmlConfigurationResult" nillable="true" type="q3:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidateXmlConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidateXmlConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ValidateXmlConfigurationResult" nillable="true" type="q4:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTurnConfigurations">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTurnConfigurationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetTurnConfigurationsResult" nillable="true" type="tns:TURNConfigurations" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="TURNConfigurations">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FQDN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Key1" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Key2" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="TCPPort" type="xs:int" />
+      <xs:element minOccurs="0" name="UDPPort" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TURNConfigurations" nillable="true" type="tns:TURNConfigurations" />
+  <xs:element name="SetTurnConfigurations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="configurations" nillable="true" type="tns:TURNConfigurations" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTurnConfigurationsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdministratorPassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="newPassword" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetAdministratorPasswordResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AvailabilityChanged">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="availability" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewClient">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UsersReset">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usersId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserAddedOrUpdated">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usersId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="user" nillable="true" type="tns:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserRemoved">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usersId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VoipProviderUpdated">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="info" nillable="true" type="tns:VoipProvider" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

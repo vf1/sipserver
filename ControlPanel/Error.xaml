@@ -1,0 +1,19 @@
+﻿<Window x:Class="ControlPanel.Error"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ControlPanel" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+    Title="OfficeSIP Server - Control Panel // Disconnected" Width="350" SizeToContent="Height" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <StackPanel Style="{StaticResource WindowPanel}">
+        <Label>Control Panel lost connection with the server:</Label>
+        <TextBox Name="errorTextBox" TextWrapping="Wrap" Height="200" Text="{Binding Path=ErrorMessage, Mode=OneWay}" IsReadOnly="True" VerticalScrollBarVisibility="Auto"></TextBox>
+        <UniformGrid Columns="2">
+            <StackPanel Style="{StaticResource BottomButtons}" HorizontalAlignment="Left">
+                <Button Command="l:Commands.CopyAll" CommandTarget="{Binding ElementName=errorTextBox}" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+            </StackPanel>
+            <StackPanel Style="{StaticResource BottomButtons}">
+                <Button Command="l:Commands.Close" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+                <Button IsDefault="True" Command="l:Commands.ConnectAs" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+            </StackPanel>
+        </UniformGrid>
+    </StackPanel>
+</Window>

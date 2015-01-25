@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sipServer>
+</sipServer>
+<!--
+  <sipServer>
+   
+      // Add <portForwardings> if the server has to interact with SIP services or clients outside the LAN.
+      // http://officesip.com/howto-port-forwarding.html
+      
+      <portForwardings>
+          <clear />
+          <add protocol="Tcp" localEndpoint="LOCAL_IP_ADDRESS:5060" externalEndpoint="PUBLIC_IP_ADDRESS:5060" />
+          <add protocol="Udp" localEndpoint="LOCAL_IP_ADDRESS:5060" externalEndpoint="PUBLIC_IP_ADDRESS:5060" />
+      </portForwardings>
+
+      // The SIP server forward a request to VoIP provider if destination uri is not found in local ones.
+      // All request from VoIP provider is forwarded to forwardIncomingCallTo uri.
+
+      <voipProviders>
+          <clear />
+          <add serverHostname="voip-service-url.com" protocol="Udp" localEndpoint="PUBLIC_IP_ADDRESS:5060"
+              username="USERNAME" password="SECRET" forwardIncomingCallTo="sip:jdoe@officesip.local" />
+      </voipProviders>
+    
+      // OfficeSIP TURN server is media relay server.
+      // The SIP server support MRAS protocol, so clients could retrive information about TURN server from the SIP server.
+      // key1, key2 are base64 encoded secrets, use same value for TURN server configuration.
+   
+      <turnServers key1="WRgBFYrbn8laansnS0AHcLVN3XI=" key2="FXNC+oo2DHAUHjidtbiipswhcGo=">
+          <clear />
+          <add fqdn="LOCAL_IP_ADDRESS" tcpPort="443" location="Intranet" />
+          <add fqdn="PUBLIC_IP_ADDRESS" tcpPort="443" location="Internet" />
+      </turnServers>
+
+  </sipServer>
+-->

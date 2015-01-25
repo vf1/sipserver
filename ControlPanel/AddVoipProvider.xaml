@@ -1,0 +1,60 @@
+﻿<Window x:Class="ControlPanel.AddVoipProvider"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ControlPanel"
+    Title="Add VoIP Provider" Width="300" ResizeMode="NoResize"
+    SnapsToDevicePixels="True" SizeToContent="Height" ShowInTaskbar="False"
+    WindowStartupLocation="CenterOwner" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <StackPanel Style="{StaticResource WindowPanel}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0">Username:</Label>
+            <Label Grid.Column="2" Grid.Row="0">SIP server hostname:</Label>
+            <TextBox Grid.Column="0" Grid.Row="1" CharacterCasing="Lower" Name="username" MaxLength="{x:Static Member=l:MaxLength.Username}" Text="{l:Validator Rule=UsernameValidationRule}" TextAlignment="Right"></TextBox>
+            <Label Grid.Column="1" Grid.Row="1">@</Label>
+            <TextBox Grid.Column="2" Grid.Row="1" Name="hotsname" MaxLength="{x:Static Member=l:MaxLength.Hostname}" Text="{l:Validator Rule=HostnameValidationRule}"></TextBox>
+        </Grid>
+        <Label Grid.Row="2" Grid.Column="2">Local IP end point:</Label>
+        <TextBox Grid.Row="3" Grid.Column="2" Name="localEndPoint" Text="{l:Validator Rule=~IPEndPointValidationRule}" MaxLength="{x:Static Member=l:MaxLength.IPEndPoint}"></TextBox>
+        <Label>Outgoing proxy's IP address or hostname:</Label>
+        <DockPanel>
+            <ComboBox Name="transport" Margin="0 0 5 0">
+                <ComboBoxItem IsSelected="True">Udp</ComboBoxItem>
+                <ComboBoxItem>Tcp</ComboBoxItem>
+            </ComboBox>
+            <TextBox Name="outgoingProxy" Text="{l:Validator Rule=~HostnameValidationRule}" MaxLength="{x:Static Member=l:MaxLength.Hostname}"></TextBox>
+        </DockPanel>
+        <Label>Display name:</Label>
+        <TextBox Name="displayName" Text="{l:Validator Rule=~DisplayNameValidationRule}" MaxLength="{x:Static Member=l:MaxLength.DisplayName}"></TextBox>
+        <Label>Forward incoming call to URI:</Label>
+        <TextBox Name="forwardCallTo" Text="{l:Validator Rule=UriValidationRule}" MaxLength="{x:Static Member=l:MaxLength.Uri}"></TextBox>
+        <Label>Authentication ID:</Label>
+        <TextBox Name="authId" Text="{l:Validator Rule=~UsernameValidationRule}" MaxLength="{x:Static Member=l:MaxLength.Username}"></TextBox>
+        <Label>Password:</Label>
+        <PasswordBox Name="password" MaxLength="{x:Static Member=l:MaxLength.Password}"></PasswordBox>
+        <StackPanel Style="{StaticResource BottomButtons}">
+            <Button IsCancel="True">Cancel</Button>
+            <Button IsDefault="True" Name="ok" Click="Ok_Click">Ok</Button>
+        </StackPanel>
+    </StackPanel>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+</Window>

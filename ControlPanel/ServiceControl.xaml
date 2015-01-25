@@ -1,0 +1,19 @@
+﻿<Window x:Class="ControlPanel.ServiceControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ControlPanel"
+    Title="OfficeSIP Server - Control Panel // Service Control" SizeToContent="Height" Width="350" ResizeMode="CanMinimize"
+    WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <StackPanel Style="{StaticResource WindowPanel}">
+        <Label>Service state:</Label>
+        <Label Content="{Binding Path=ServiceStatus}"></Label>
+        <Label>Service control:</Label>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button Command="l:Commands.StartService" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+            <Button Command="l:Commands.StopService" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+        </StackPanel>
+        <StackPanel Style="{StaticResource BottomButtons}">
+            <Button Command="l:Commands.Close" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

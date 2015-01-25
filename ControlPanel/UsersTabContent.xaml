@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="ControlPanel.UsersTabContent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:ControlPanel">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MainResources.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="DataGridStyle" TargetType="{x:Type Grid}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsInitializing}" Value="False">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--
+        <Grid.Triggers>
+            <DataTrigger Binding="{Binding Path=IsInitializing}" Value="True">
+                <Setter Property="Grid.Visibility" Value="Visible" TargetName="InitializingGrid"/>
+            </DataTrigger>
+        </Grid.Triggers>
+        -->
+        <ListView Grid.Row="0" Name="UsersList">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="" Width="28">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Width="14" Height="14" Source="{Binding Path=Data.Availability, Converter={StaticResource AvailabilityConverter}}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Username" Width="100" DisplayMemberBinding="{Binding Path=Data,Converter={StaticResource LoadingConverter}}"></GridViewColumn>
+                        <GridViewColumn Header="Display Name" Width="200" DisplayMemberBinding="{Binding Path=Data.DisplayName}"></GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Row="0" Background="White" Opacity="0.5" Visibility="{Binding ElementName=UsersList, Path=ItemsSource.IsInitializing, Mode=OneWay, Converter={StaticResource VisibilityConverter}}">
+            <TextBlock Text="Loading..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <!--
+        <Grid Grid.Row="0" Background="White" Opacity="0.5" Name="LoadingGrid" Visibility="{Binding Path=IsLoading, Converter={StaticResource VisibilityConverter}}">
+            <TextBlock Text="Loading..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        -->
+        <!-- IsEnabled="{Binding Path=Config.UseDomainAuth, Converter={StaticResource TrueFalseConverter}}" -->
+        <StackPanel Grid.Row="1" Style="{StaticResource BottomButtons}" Name="EditControls">
+            <Button Command="l:Commands.AddUser" CommandTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+            <Button Command="l:Commands.RemoveUser" CommandTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+            <Button Command="l:Commands.EditUser" CommandTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+            <Button Command="l:Commands.ChangeUserPassword" CommandTarget="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
+        </StackPanel>
+        <!--
+        CommandTarget="{Binding ElementName=UsersList}" 
+        <TextBlock Grid.Row="2" Foreground="Gray" HorizontalAlignment="Right" Visibility="{Binding Path=Config.ActiveDirectoryMode, Converter={StaticResource BoolVisibalityConverter}}">Use Active Directory Managing tool to edit this list.</TextBlock>
+        -->
+    </Grid>
+</UserControl>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.6</ProductVersion>
+    <ProjectGuid>7caff910-abc5-4acf-9b43-16b1bc0c46b1</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>officesip-server</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Product.wxs" />
+    <Compile Include="WwwFiles.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bannrbmp.bmp" />
+    <Content Include="dlgbmp.bmp" />
+    <Content Include="License.rtf" />
+    <Content Include="WwwFiles.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixFirewallExtension">
+      <HintPath>$(WixExtDir)\WixFirewallExtension.dll</HintPath>
+      <Name>WixFirewallExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
+      <Name>WixNetFxExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+  <Target Name="BeforeBuild">
+    <GetAssemblyIdentity AssemblyFiles="$(SolutionDir)Server\bin\$(Configuration)\OfficeSIP Server.exe">
+      <Output TaskParameter="Assemblies" ItemName="AssemblyVersions" />
+    </GetAssemblyIdentity>
+    <CreateProperty Value="$(OutputName)-$([System.Text.RegularExpressions.Regex]::Match(%(AssemblyVersions.Version).Value, '\d+\.\d+'))">
+      <Output TaskParameter="Value" PropertyName="TargetName" />
+    </CreateProperty>
+    <CreateProperty Value="$(TargetName)$(TargetExt)">
+      <Output TaskParameter="Value" PropertyName="TargetFileName" />
+    </CreateProperty>
+    <CreateProperty Value="$(TargetDir)$(TargetFileName)">
+      <Output TaskParameter="Value" PropertyName="TargetPath" />
+    </CreateProperty>
+  </Target>
+</Project>
