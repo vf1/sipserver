@@ -1,7 +1,7 @@
 OfficeSIP Server
 ================
 
-MUVConf is a SIP server for Windows written in C#.
+OfficeSIP is a SIP server for Windows written in C#.
 
 
 Website and Documentation
