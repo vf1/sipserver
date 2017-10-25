@@ -65,8 +65,8 @@ namespace Sip.Server.Users
 				QuoteIfReqired(user.PostalCode),
 				QuoteIfReqired(user.WwwHomepage),
 				QuoteIfReqired(user.Title),
-				QuoteIfReqired(user.Company),
-				QuoteIfReqired(user.PhysicalDeliveryOfficeName));
+				//QuoteIfReqired(user.Company),
+				//QuoteIfReqired(user.PhysicalDeliveryOfficeName));
 		}
 
 		public static string GetFormatDescription()
