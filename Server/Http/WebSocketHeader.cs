@@ -239,8 +239,8 @@ namespace Server.Http
 
 		public override string ToString()
 		{
-			return string.Format("Fin: {0}, Mask: {1}, Opcode: {2}, PayloadLength: {3}",//, MaskingKey: {4:x2}{5:x2}{6:x2}{7:x2}",
-				Fin, Mask, Opcode, PayloadLengthLong, MaskingKey0, MaskingKey1, MaskingKey2, MaskingKey3);
+            return string.Format("Fin: {0}, Mask: {1}, Opcode: {2}, PayloadLength: {3}",//, MaskingKey: {4:x2}{5:x2}{6:x2}{7:x2}",
+                Fin, Mask, Opcode, PayloadLengthLong);//, MaskingKey0, MaskingKey1, MaskingKey2, MaskingKey3);
 		}
 	}
 }
