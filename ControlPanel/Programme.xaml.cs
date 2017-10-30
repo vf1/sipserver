@@ -893,7 +893,7 @@ namespace ControlPanel
 		private AsyncVirtualizingCollection<User> GetUsers(string id)
 		{
 			if (userz.ContainsKey(id) == false)
-				userz[id] = new AsyncVirtualizingCollection<User>(new UsersFetcher(WcfClient1, id), 32, 20); ;
+				userz[id] = new AsyncVirtualizingCollection<User>(new UsersFetcher(WcfClient1, id), 32, 20);
 
 			return userz[id];
 		}
